@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LAN3107 Unit 6 CA Practice 3</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #fdf8e3;
+  color: #333;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='190'%3E%3Cpath d='M80 20 L74 32 L68 32 L66 75 L70 87 L77 92 L77 102 L83 102 L83 92 L90 87 L94 75 L92 32 L86 32 Z' fill='none' stroke='%23C4956A' stroke-width='1.3' opacity='0.5'/%3E%3Cpath d='M77 102 L83 102 L83 108 L77 108 Z' fill='%23C4956A' opacity='0.3'/%3E%3Cline x1='80' y1='108' x2='80' y2='118' stroke='%23C4956A' stroke-width='1.8' opacity='0.4'/%3E%3Cline x1='70' y1='118' x2='90' y2='118' stroke='%23C4956A' stroke-width='1.8' opacity='0.4'/%3E%3Ccircle cx='80' cy='25' r='2.5' fill='%23C4956A' opacity='0.3'/%3E%3C/svg%3E") repeat;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 10% 85%, rgba(247,231,206,0.4) 3px, transparent 4px),
+    radial-gradient(circle at 25% 70%, rgba(247,231,206,0.3) 5px, transparent 6px),
+    radial-gradient(circle at 45% 90%, rgba(247,231,206,0.35) 4px, transparent 5px),
+    radial-gradient(circle at 65% 60%, rgba(247,231,206,0.25) 7px, transparent 8px),
+    radial-gradient(circle at 80% 80%, rgba(247,231,206,0.35) 3px, transparent 4px),
+    radial-gradient(circle at 90% 50%, rgba(247,231,206,0.3) 6px, transparent 7px),
+    radial-gradient(circle at 15% 40%, rgba(247,231,206,0.25) 4px, transparent 5px),
+    radial-gradient(circle at 50% 30%, rgba(247,231,206,0.2) 8px, transparent 9px),
+    radial-gradient(circle at 35% 15%, rgba(247,231,206,0.25) 5px, transparent 6px),
+    radial-gradient(circle at 60% 5%, rgba(247,231,206,0.2) 4px, transparent 5px),
+    radial-gradient(circle at 5% 55%, rgba(247,231,206,0.25) 6px, transparent 7px),
+    radial-gradient(circle at 95% 35%, rgba(247,231,206,0.3) 4px, transparent 5px),
+    radial-gradient(circle at 40% 55%, rgba(247,231,206,0.15) 10px, transparent 11px),
+    radial-gradient(circle at 70% 75%, rgba(247,231,206,0.2) 5px, transparent 6px),
+    radial-gradient(circle at 20% 25%, rgba(247,231,206,0.15) 7px, transparent 8px);
+  animation: bubbles 18s ease-in-out infinite alternate;
+}
+
+@keyframes bubbles {
+  0% { transform: translateY(0); opacity: 0.5; }
+  100% { transform: translateY(-35px); opacity: 1; }
+}
+
+.banner {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+  animation: kenburns 10s ease-in-out infinite alternate;
+  transform-origin: center center;
+  clip-path: inset(0 0 16.67% 0);
+}
+
+@keyframes kenburns {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.12); }
+}
+
+.page-header {
+  text-align: center;
+  padding: 20px 20px 0;
+  background: white;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.page-header h1 {
+  font-size: 24px;
+  color: #4b0082;
+  margin-bottom: 4px;
+}
+
+.page-header p {
+  font-size: 16px;
+  color: #6a0dad;
+  margin-bottom: 4px;
+}
+
+.page-header .presented-by {
+  font-size: 14px;
+  color: #9370db;
+  font-style: italic;
+  margin-top: 6px;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 0;
+}
+
+.tab-btn {
+  padding: 14px 36px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  background: #f0e3b8;
+  color: #555;
+  border-radius: 10px 10px 0 0;
+  transition: background 0.2s, color 0.2s;
+}
+
+.tab-btn:hover {
+  background: #e6d6a2;
+}
+
+.tab-btn.active {
+  background: white;
+  color: #6a0dad;
+}
+
+.tab-content {
+  display: none;
+  background: white;
+  padding: 30px;
+  border-radius: 0 10px 10px 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  line-height: 1.7;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+h1 {
+  font-size: 22px;
+  color: #4b0082;
+  margin-bottom: 6px;
+}
+
+h2 {
+  font-size: 18px;
+  color: #6a0dad;
+  margin: 20px 0 10px;
+}
+
+h3 {
+  font-size: 16px;
+  color: #8a2be2;
+  margin: 16px 0 8px;
+}
+
+.task-section {
+  margin-bottom: 30px;
+}
+
+.task-section ul {
+  padding-left: 20px;
+  margin: 8px 0;
+}
+
+.task-section li {
+  margin-bottom: 6px;
+}
+
+.task-box {
+  background: #fdf6e0;
+  border-left: 4px solid #9370db;
+  padding: 16px 20px;
+  margin: 12px 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.task-box p { margin-bottom: 4px; }
+
+table.dialogue {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+
+table.dialogue th {
+  background: #9370db;
+  color: white;
+  padding: 10px 14px;
+  text-align: left;
+  width: 50%;
+}
+
+table.dialogue td {
+  padding: 10px 14px;
+  vertical-align: top;
+  border-bottom: 1px solid #eee0b8;
+}
+
+table.dialogue tr:nth-child(even) td {
+  background: #fffaf0;
+}
+
+table.dialogue td:first-child {
+  border-right: 1px solid #eee0b8;
+}
+
+table.dialogue td:last-child {
+  color: #555;
+}
+
+table.dialogue tr.active-row td {
+  background: #f7eccf !important;
+}
+
+.utterance {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.btn-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  background: #9370db;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+  margin-top: 2px;
+}
+
+.btn-icon:hover {
+  background: #7b5ec0;
+}
+
+.btn-icon.playing {
+  background: #e74c3c;
+}
+
+.btn-icon svg {
+  width: 12px;
+  height: 12px;
+  fill: currentColor;
+}
+
+.controls-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding: 10px 16px;
+  background: #fdf6e0;
+  border-radius: 8px;
+  border: 1px solid #eee0b8;
+  flex-wrap: wrap;
+}
+
+.controls-bar label {
+  font-weight: 600;
+  color: #6a0dad;
+  font-size: 14px;
+}
+
+.controls-bar input[type="range"] {
+  flex: 1;
+  max-width: 160px;
+  accent-color: #9370db;
+}
+
+.controls-bar .speed-val {
+  font-weight: 700;
+  color: #4b0082;
+  min-width: 40px;
+  font-size: 14px;
+}
+
+.ctrl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #9370db;
+  color: white;
+  transition: background 0.15s;
+}
+
+.ctrl-btn:hover {
+  background: #7b5ec0;
+}
+
+.ctrl-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.ctrl-btn svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+.separator {
+  width: 1px;
+  height: 28px;
+  background: #f0e3b8;
+  margin: 0 4px;
+}
+
+.word {
+  cursor: pointer;
+  border-bottom: 1px dotted rgba(147,112,219,0.3);
+  transition: background 0.15s, border-color 0.15s;
+  border-radius: 2px;
+  padding: 0 1px;
+}
+
+.word:hover {
+  background: rgba(147,112,219,0.12);
+  border-bottom-color: rgba(147,112,219,0.7);
+}
+
+.word.speaking {
+  background: rgba(147,112,219,0.2);
+  border-bottom-color: #9370db;
+  border-bottom-style: solid;
+}
+
+.section-label td {
+  background: #faf1d8 !important;
+  padding: 8px 14px !important;
+  font-weight: 700;
+  font-size: 14px;
+  color: #4b0082;
+  border-bottom: 2px solid #f0e3b8;
+}
+
+.cn-translation {
+  display: none;
+  margin-top: 6px;
+  padding: 8px 12px;
+  background: #fff8f0;
+  border-left: 3px solid #e8a87c;
+  border-radius: 0 6px 6px 0;
+  font-size: 14px;
+  color: #8b5a2b;
+  line-height: 1.6;
+}
+
+.cn-active .cn-translation {
+  display: block;
+}
+
+.cn-toggle-wrap {
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.cn-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6a0dad;
+  user-select: none;
+}
+
+.cn-toggle input {
+  width: 40px;
+  height: 22px;
+  appearance: none;
+  background: #f0e3b8;
+  border-radius: 11px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.cn-toggle input::before {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: white;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.2s;
+}
+
+.cn-toggle input:checked {
+  background: #9370db;
+}
+
+.cn-toggle input:checked::before {
+  transform: translateX(18px);
+}
+</style>
+</head>
+<body>
+
+<div class="banner">
+  <img src="banner.png" alt="Banner">
+</div>
+
+<div class="page-header">
+  <h1>Essential Workplace Communication: Effective Oral Interaction (LAN3107)</h1>
+  <p>Unit 6 — CA Practice 3</p>
+  <p class="presented-by">Presented by Rebecca Tang</p>
+  <div class="cn-toggle-wrap">
+    <label class="cn-toggle">
+      <input type="checkbox" onchange="toggleAllCN(this.checked)">
+      <span>中文翻译</span>
+    </label>
+  </div>
+</div>
+
+<div class="container">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab(0)">TAB 1 — Task Overview</button>
+    <button class="tab-btn" onclick="switchTab(1)">TAB 2 — Possible Response</button>
+    <button class="tab-btn" onclick="switchTab(2)">Video</button>
+  </div>
+
+  <div class="tab-content active" id="tab-0">
+
+    <div class="task-section">
+      <h2 data-cn="学生A — Rachel Wong（数字营销主任）">Student A — Rachel Wong (Digital Marketing Officer)</h2>
+      <p data-cn="你是InnoNation Tech的数字营销主任。你正在参加公司活动。与同事Marcus Leung（学生B，IT支援专员）进行对话。你需要完成以下所有事项：">You are Rachel Wong, a digital marketing officer at InnoNation Tech. You are at a company event. Hold a conversation with your colleague, Marcus Leung (Student B, an IT support specialist). You should perform all items below:</p>
+
+      <ol style="padding-left:20px; margin:10px 0;">
+        <li data-cn="问候你的同事并介绍自己">Greet your colleague and introduce yourself</li>
+        <li>
+          <span data-cn="就以下话题进行闲聊：">Make small talk on the following topics:</span>
+          <ul>
+            <li data-cn="你最近工作常用的一款有用应用或工具">A useful app or tool you've been using for work lately</li>
+            <li>
+              <span data-cn="你部门负责的项目 — ">A project run by your department — </span><strong>Promoting a new AI-powered content creation tool through social media</strong>
+              <div class="task-box">
+                <p data-cn="你可以谈论："><strong>You may talk about:</strong></p>
+                <p data-cn="• 迄今为止已完成的工作">• what has been done so far</p>
+                <p data-cn="• 未来几个月的计划">• plans for the coming months</p>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <span data-cn="分享你对新公司政策的看法，并用理由支持你的观点">Share your opinions on a new company policy and support your views with reasons</span>
+          <div class="task-box">
+            <p data-cn="公司刚推行一周四天工作制。员工现在只从周一到周四工作，但每天工作时间更长。"><strong>Four-day work week policy:</strong> Your company has just introduced a four-day work week. Employees now work from Monday to Thursday only, with longer working hours each day.</p>
+            <p data-cn="你可以谈论："><strong>You may talk about:</strong></p>
+            <p data-cn="• 你对政策的看法或感受及原因">• what you think or feel about the policy and why</p>
+            <p data-cn="• 政策可能给公司及员工带来的潜在好处和坏处">• the potential benefits and drawbacks the policy may bring to the company and its employees</p>
+          </div>
+        </li>
+        <li data-cn="礼貌地结束对话">End the conversation politely</li>
+      </ol>
+    </div>
+
+    <hr style="border:none;border-top:2px solid #eee0b8;margin:30px 0;">
+
+    <div class="task-section">
+      <h2 data-cn="学生B — Marcus Leung（IT支援专员）">Student B — Marcus Leung (IT Support Specialist)</h2>
+      <p data-cn="你是InnoNation Tech的IT支援专员。你正在参加公司活动。你需要与数字营销主管Rachel Wong（学生A）进行对话。你需要完成以下所有事项：">You are Marcus Leung, an IT support specialist at InnoNation Tech. You are at a company event. Hold a conversation with your colleague, Rachel Wong (Student A, a digital marketing officer). You should perform all items below:</p>
+
+      <ol style="padding-left:20px; margin:10px 0;">
+        <li data-cn="问候你的同事并介绍自己">Greet your colleague and introduce yourself</li>
+        <li>
+          <span data-cn="就以下话题进行闲聊：">Make small talk on the following topics:</span>
+          <ul>
+            <li data-cn="你最近工作常用的一款实用应用或工具">A useful app or tool you've been using for work lately</li>
+            <li>
+              <span data-cn="你部门负责的项目 — ">A project run by your department — </span><strong>Improving the authentication login system of the staff intranet</strong>
+              <div class="task-box">
+                <p data-cn="你可以谈论："><strong>You may talk about:</strong></p>
+                <p data-cn="• 迄今为止已完成的工作">• what has been done so far</p>
+                <p data-cn="• 未来几个月的计划">• plans for the coming months</p>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <span data-cn="分享你对新公司政策的看法，并用理由支持你的观点">Share your opinions on a new company policy and support your views with reasons</span>
+          <div class="task-box">
+            <p data-cn="公司刚推行一周四天工作制。员工现在只从周一至周四工作，但每天工作时间更长。"><strong>Four-day work week:</strong> Employees now work from Monday to Thursday only, with longer working hours each day.</p>
+            <p data-cn="你可以谈论："><strong>You may talk about:</strong></p>
+            <p data-cn="• 你对政策的看法或感受以及原因">• what you think or feel about the policy and why</p>
+            <p data-cn="• 政策可能给公司及员工带来的潜在好处和坏处">• the potential benefits and drawbacks the policy may bring to the company and its employees</p>
+          </div>
+        </li>
+        <li data-cn="礼貌地结束对话">End the conversation politely</li>
+      </ol>
+    </div>
+
+  </div>
+
+  <div class="tab-content" id="tab-1">
+
+    <h1 data-cn="参考回答">Possible Response</h1>
+    <p style="color:#666; margin-bottom:16px;" data-cn="学生A（Rachel）与学生B（Marcus）的建议对话">Suggested conversation between Student A (Rachel) and Student B (Marcus)</p>
+
+    <div class="controls-bar">
+      <label>Speed:</label>
+      <input type="range" id="speedSlider" min="0.25" max="2.0" step="0.25" value="1.0">
+      <span class="speed-val" id="speedDisplay">1.0x</span>
+      <div class="separator"></div>
+      <button class="ctrl-btn" id="playAllBtn" onclick="playAll()"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg> Play All</button>
+      <button class="ctrl-btn" id="pauseAllBtn" onclick="pauseAll()" disabled><svg viewBox="0 0 24 24"><rect x="5" y="4" width="5" height="16"/><rect x="14" y="4" width="5" height="16"/></svg> Pause</button>
+      <button class="ctrl-btn" id="stopAllBtn" onclick="stopAll()" disabled><svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14"/></svg> Stop</button>
+    </div>
+
+    <table class="dialogue">
+      <thead>
+        <tr><th>Student A — Rachel Wong</th><th>Student B — Marcus Leung</th></tr>
+      </thead>
+      <tbody id="dialogueBody">
+        <tr class="section-label"><td colspan="2" data-cn="1. 问候你的同事并介绍自己">1. Greet your colleague and introduce yourself</td></tr>
+        <tr>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a01.mp3', this)" data-src="audio/a01.mp3"></button><span data-cn="嗨。我想我们还没正式见过面。我是数字营销部的Rachel Wong。很高兴认识你。">'Hi. I don't think we've met yet. I'm Rachel Wong from the digital marketing department. It's nice to meet you.'</span></div></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b01.mp3', this)" data-src="audio/b01.mp3"></button><span data-cn="嗨，Rachel。我是IT部的Marcus Leung。也很高兴认识你。你觉得这次活动到目前为止怎么样？">'Hi, Rachel. I'm Marcus Leung from the IT department. It's nice to meet you too. How are you enjoying the event so far?'</span></div></td>
+        </tr>
+        <tr>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a02.mp3', this)" data-src="audio/a02.mp3"></button><span data-cn="挺不错的，谢谢。这是个放松和跟平时团队以外的人聊天的好机会。你呢？">'It's quite nice, thanks. It's a good chance to relax and talk to people outside the usual team. How about you?'</span></div></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b02.mp3', this)" data-src="audio/b02.mp3"></button><span data-cn="是的，我也很享受！跟不同团队的同事聊天，我总是能学到新东西。">'Yes, I'm enjoying it too! I always learn something new when I talk to people from different teams.'</span></div></td>
+        </tr>
+        <tr class="section-label"><td colspan="2" data-cn="2. 就以下话题进行闲聊（续）">2. Make small talk on the following topics (continued)</td></tr>
+        <tr>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a03.mp3', this)" data-src="audio/a03.mp3"></button><span data-cn="你说得对。我们能从彼此的工作经历中学到这么多，这真的很神奇。">'You're right. It's amazing how much we can learn from each other's work experiences.'</span></div></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b03.mp3', this)" data-src="audio/b03.mp3"></button><span data-cn="说到学习新事物，你最近有没有用什么有用的应用或工具来工作？">'Speaking of learning new things, have you been using any useful apps or tools for work lately?'</span></div></td>
+        </tr>
+        <tr class="section-label"><td colspan="2" data-cn="a. 你最近工作常用的一款实用应用或工具">a. A useful app or tool you&apos;ve been using for work lately</td></tr>
+        <tr>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a04.mp3', this)" data-src="audio/a04.mp3"></button><span data-cn="有！我一直在用一个叫Clyde的AI写作助手。它能帮我更快地起草社媒标题和构思活动点子。你呢？">'Yes! I've been using a new AI writing assistant called Clyde. It helps me draft social media captions and campaign ideas faster. What about you?'</span></div></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b04.mp3', this)" data-src="audio/b04.mp3"></button><span data-cn="真厉害！我一直在用一个叫FocusGrid的新任务管理工具。它真的很适合整理我的任务，把笔记都放在一处，帮我省了很多时间。">'That's impressive! I've been using a new task management tool called FocusGrid. It's really good for organising my tasks and keeping all my notes in one place. It saves me a lot of time.'</span></div></td>
+        </tr>
+        <tr>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a05.mp3', this)" data-src="audio/a05.mp3"></button><span data-cn="听起来很实用！我改天也要试试。">'That sounds very useful! I'll have to try it sometime.'</span></div></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a06.mp3', this)" data-src="audio/a06.mp3"></button><span data-cn="那么，你们部门最近在忙什么？">'So, what's your department working on these days?'</span></div></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b05.mp3', this)" data-src="audio/b05.mp3"></button><span data-cn="我们目前正在改进员工内部网的登录身份验证系统。我们已经完成新设计，并开始用一小部分用户进行测试。未来几个月，我们计划修复剩余问题，并在年底前向全体员工推行。我们也在为每个人准备培训资料。">'We're currently working on improving the authentication login system of the staff intranet. We've completed the new design and started testing with a small group of users. In the coming months, we plan to fix the remaining issues and roll it out to all staff by the end of the year. We're also preparing training materials for everyone.'</span></div></td>
+        </tr>
+        <tr>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a07.mp3', this)" data-src="audio/a07.mp3"></button><span data-cn="听起来是个稳妥的计划。它应该能让登录顺畅得多，也更安全。">'Sounds like a solid plan. It should make logging in much smoother and more secure.'</span></div></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b06.mp3', this)" data-src="audio/b06.mp3"></button><span data-cn="没错。你们部门呢？">'That's right. What about your department?'</span></div></td>
+        </tr>
+        <tr>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a08.mp3', this)" data-src="audio/a08.mp3"></button><span data-cn="我们正在通过社交媒体推广公司新的AI内容创作工具。我们已经制作了几条短视频，也投放了一些定向广告，到目前为止互动效果相当鼓舞人心。">'We're promoting the company's new AI-powered content creation tool through social media. We've already created several short videos and run some targeted ads. The engagement so far has been quite encouraging.'</span></div></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b07.mp3', this)" data-src="audio/b07.mp3"></button><span data-cn="真棒！未来几个月你们有什么计划？">'Nice! What are your plans for the coming months?'</span></div></td>
+        </tr>
+        <tr>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a09.mp3', this)" data-src="audio/a09.mp3"></button><span data-cn="我们计划制作一个完整的内容系列，包括更多教程式视频和用户见证。我们还想与几位业内网红合作做直播演示和测评。希望这能帮助我们触达更广的受众并增加注册人数。">'We plan to create a full content series, including more tutorial-style videos and user testimonials. We also want to collaborate with a few industry influencers to do live demos and reviews. Hopefully this will help us reach a wider audience and increase sign-ups.'</span></div></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b08.mp3', this)" data-src="audio/b08.mp3"></button><span data-cn="听起来是个考虑周全的计划。">'That sounds like a well-thought-out plan.'</span></div></td>
+        </tr>
+        <tr class="section-label"><td colspan="2" data-cn="3. 谈谈你对新公司政策（一周四天工作制）的看法，并用理由支持你的观点">3. Share your opinion on a new company policy — Four-day work week</td></tr>
+        <tr>
+          <td></td>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b09.mp3', this)" data-src="audio/b09.mp3"></button><span data-cn="顺便问一下，你觉得新的一周四天工作制怎么样？">'By the way, what do you think of the new four-day work week?'</span></div></td>
+        </tr>
+        <tr>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a10.mp3', this)" data-src="audio/a10.mp3"></button><span data-cn="其实我对它很期待。我觉得这是个很棒的主意，因为它给了我们更好的工作与生活平衡。周五休息能让我们好好充电，虽然周一到周四每天的工作时间会稍微长一点。我也觉得它能提升我们在那四个工作日里的创造力和生产力。">'I'm quite excited about it, actually. I think it's a great idea because it gives us much better work-life balance. Having Fridays off should help us recharge properly, even though the daily hours from Monday to Thursday are a bit longer. I also think it could boost our creativity and productivity during those four working days.'</span></div></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b10.mp3', this)" data-src="audio/b10.mp3"></button><span data-cn="我同意。周五休息能让我们感觉更精神。不过，也可能有一些。较长的每日工作时间可能一开始会很累，而需要每日协调的团队（比如客服团队）可能难以适应这种压缩的日程。">'I agree. Having Fridays off should help us feel more refreshed. However, there might be some drawbacks too. The longer daily hours might be tiring at first, and teams that need daily coordination, such as the customer service team, might find it challenging to adjust to the compressed schedule.'</span></div></td>
+        </tr>
+        <tr>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a11.mp3', this)" data-src="audio/a11.mp3"></button><span data-cn="这是个合理的担忧。更长的天数需要一些时间适应，所以我们需要周密的计划和良好的沟通，以确保一切顺利。但总体而言，我认为好处大于坏处。员工会更积极。">'That's a valid concern. The longer days will take some time to get used to, and we'll need careful planning and good communication to make sure everything runs smoothly. But overall, I think the benefits outweigh the drawbacks. Employees will likely be more motivated.'</span></div></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b11.mp3', this)" data-src="audio/b11.mp3"></button><span data-cn="我也这么觉得。这可能还能帮助公司在当今竞争激烈的就业市场中吸引和留住人才。许多公司都在探索这样的弹性工作安排。">'I think so too. It might also help the company attract and retain talent in today's competitive job market. Many companies are exploring flexible work arrangements like this.'</span></div></td>
+        </tr>
+        <tr class="section-label"><td colspan="2" data-cn="4. 礼貌地结束对话">4. End the conversation politely</td></tr>
+        <tr>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a12.mp3', this)" data-src="audio/a12.mp3"></button><span data-cn="正是如此。好了，Marcus，很高兴和你聊天。我很开心了解了你们部门的更多情况，以及你对新的四天工作周的看法。这说明公司很关心我们的身心健康。">'Exactly. Well, Marcus, it's been great chatting with you. I've enjoyed learning more about your department and your thoughts on the new four-day work week. It shows the company cares about our well-being.'</span></div></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b12.mp3', this)" data-src="audio/b12.mp3"></button><span data-cn="彼此彼此，Rachel。很高兴叙旧。我们很快再聊。">'Likewise, Rachel. It was good to catch up. Let's talk again soon.'</span></div></td>
+        </tr>
+        <tr>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a13.mp3', this)" data-src="audio/a13.mp3"></button><span data-cn="当然！好好享受活动的其余部分。">'Absolutely! Enjoy the rest of the event.'</span></div></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b13.mp3', this)" data-src="audio/b13.mp3"></button><span data-cn="你也是，Rachel。保重，回头见！">'You too, Rachel. Take care and see you around!'</span></div></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+  <div class="tab-content" id="tab-2">
+    <h1>Sample Conversation Video</h1>
+    <p style="color:#666; margin-bottom:16px;">Watch the suggested conversation between Rachel and Marcus.</p>
+    <video controls width="100%" style="max-width:1000px; display:block; border-radius:8px; box-shadow:0 2px 12px rgba(0,0,0,0.15);">
+      <source src="LAN3107_CA Practice 3 video_addheadings.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</div>
+
+<script>
+  let synth = window.speechSynthesis;
+  let currentAudio = null;
+  let currentBtn = null;
+  let playlist = [];
+  let playlistIdx = 0;
+  let isPlayingAll = false;
+  let currentWordEl = null;
+
+  function switchTab(index) {
+    stopAll();
+    const contents = document.querySelectorAll('.tab-content');
+    const buttons = document.querySelectorAll('.tab-btn');
+    contents.forEach(c => c.classList.remove('active'));
+    buttons.forEach(b => b.classList.remove('active'));
+    contents[index].classList.add('active');
+    buttons[index].classList.add('active');
+  }
+
+  function getSpeed() {
+    return parseFloat(document.getElementById('speedSlider').value);
+  }
+
+  document.getElementById('speedSlider').addEventListener('input', function() {
+    document.getElementById('speedDisplay').textContent = this.value + 'x';
+    if (currentAudio && !currentAudio.paused) {
+      currentAudio.playbackRate = getSpeed();
+    }
+  });
+
+  function resetBtn(btn) {
+    if (!btn) return;
+    btn.classList.remove('playing');
+    btn.innerHTML = '<svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>';
+  }
+
+  function setBtnPause(btn) {
+    btn.classList.add('playing');
+    btn.innerHTML = '<svg viewBox="0 0 24 24"><rect x="7" y="5" width="4" height="14"/><rect x="13" y="5" width="4" height="14"/></svg>';
+  }
+
+  function highlightRow(target) {
+    document.querySelectorAll('#dialogueBody tr').forEach(r => r.classList.remove('active-row'));
+    if (target) {
+      const row = target.closest('tr');
+      if (row) row.classList.add('active-row');
+    }
+  }
+
+  function clearHighlight() {
+    document.querySelectorAll('#dialogueBody tr').forEach(r => r.classList.remove('active-row'));
+  }
+
+  function playAudio(src, btn) {
+    if (isPlayingAll) stopAll();
+
+    if (currentAudio && !currentAudio.paused) {
+      currentAudio.pause();
+      if (currentBtn && currentBtn !== btn) resetBtn(currentBtn);
+      if (currentBtn === btn) {
+        currentAudio = null;
+        currentBtn = null;
+        return;
+      }
+    }
+
+    currentAudio = new Audio(src);
+    currentAudio.playbackRate = getSpeed();
+    currentBtn = btn;
+    setBtnPause(btn);
+    highlightRow(btn);
+    currentAudio.play();
+
+    currentAudio.addEventListener('ended', function() {
+      resetBtn(btn);
+      currentAudio = null;
+      currentBtn = null;
+      clearHighlight();
+    });
+  }
+
+  function playAll() {
+    if (isPlayingAll) return;
+    isPlayingAll = true;
+    document.getElementById('playAllBtn').disabled = true;
+    document.getElementById('pauseAllBtn').disabled = false;
+    document.getElementById('stopAllBtn').disabled = false;
+
+    if (currentAudio && !currentAudio.paused) {
+      currentAudio.pause();
+      if (currentBtn) resetBtn(currentBtn);
+    }
+
+    playlist = [];
+    const btns = document.querySelectorAll('#dialogueBody .btn-icon');
+    btns.forEach(b => playlist.push(b.getAttribute('data-src')));
+
+    playlistIdx = 0;
+    playNext();
+  }
+
+  function playNext() {
+    if (!isPlayingAll || playlistIdx >= playlist.length) {
+      stopAll();
+      return;
+    }
+    const src = playlist[playlistIdx];
+    const btns = document.querySelectorAll('#dialogueBody .btn-icon');
+    const btn = btns[playlistIdx];
+    highlightRow(btn);
+
+    if (currentAudio) {
+      currentAudio.pause();
+      if (currentBtn) resetBtn(currentBtn);
+    }
+
+    currentAudio = new Audio(src);
+    currentAudio.playbackRate = getSpeed();
+    currentBtn = btn;
+    setBtnPause(btn);
+    currentAudio.play();
+
+    currentAudio.addEventListener('ended', function() {
+      resetBtn(btn);
+      playlistIdx++;
+      if (isPlayingAll && playlistIdx < playlist.length) playNext();
+      else stopAll();
+    });
+  }
+
+  function pauseAll() {
+    if (currentAudio && !currentAudio.paused) currentAudio.pause();
+    document.getElementById('pauseAllBtn').disabled = true;
+    document.getElementById('playAllBtn').disabled = false;
+    document.getElementById('playAllBtn').innerHTML = '<svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg> Resume';
+  }
+
+  function stopAll() {
+    isPlayingAll = false;
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio = null;
+    }
+    if (currentBtn) {
+      resetBtn(currentBtn);
+      currentBtn = null;
+    }
+    clearHighlight();
+    document.getElementById('playAllBtn').disabled = false;
+    document.getElementById('playAllBtn').innerHTML = '<svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg> Play All';
+    document.getElementById('pauseAllBtn').disabled = true;
+    document.getElementById('stopAllBtn').disabled = true;
+  }
+
+  function toggleAllCN(show) {
+    document.querySelector('.container').classList.toggle('cn-active', show);
+  }
+
+  function initTranslations() {
+    document.querySelectorAll('[data-cn], [data-i18n]').forEach(el => {
+      if (el.dataset.cnProcessed) return;
+      el.dataset.cnProcessed = '1';
+      const trans = document.createElement('div');
+      trans.className = 'cn-translation';
+      trans.textContent = el.dataset.cn || el.dataset.i18n;
+      el.after(trans);
+    });
+  }
+
+  function wrapWordsInEl(el) {
+    const text = el.textContent;
+    const words = text.split(/(\s+)/);
+    el.innerHTML = '';
+    words.forEach(w => {
+      if (w.trim() === '') {
+        el.appendChild(document.createTextNode(w));
+      } else {
+        const wordSpan = document.createElement('span');
+        wordSpan.className = 'word';
+        wordSpan.textContent = w;
+        wordSpan.addEventListener('click', function(e) {
+          e.stopPropagation();
+          speakWord(w.replace(/[^a-zA-Z'-]/g, ''), this);
+        });
+        el.appendChild(wordSpan);
+      }
+    });
+  }
+
+  function initWordClick() {
+    document.querySelectorAll('#dialogueBody .utterance span').forEach(wrapWordsInEl);
+  }
+
+  function speakWord(word, el) {
+    if (!word) return;
+    if (synth.speaking) {
+      synth.cancel();
+      if (currentWordEl) currentWordEl.classList.remove('speaking');
+      if (currentWordEl === el) { currentWordEl = null; return; }
+    }
+    if (currentWordEl) currentWordEl.classList.remove('speaking');
+    el.classList.add('speaking');
+    currentWordEl = el;
+    const utter = new SpeechSynthesisUtterance(word);
+    utter.rate = 0.85;
+    utter.pitch = 1;
+    const voices = synth.getVoices();
+    const v = voices.find(x => x.lang && x.lang.startsWith('en-GB'));
+    if (v) utter.voice = v;
+    utter.onend = function() { el.classList.remove('speaking'); currentWordEl = null; };
+    utter.onerror = function() { el.classList.remove('speaking'); currentWordEl = null; };
+    synth.speak(utter);
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    initTranslations();
+    if (synth.getVoices().length) initWordClick();
+    else synth.addEventListener('voiceschanged', initWordClick, { once: true });
+  });
+</script>
+
+</body>
+</html>
