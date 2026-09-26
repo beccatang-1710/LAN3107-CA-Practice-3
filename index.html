@@ -206,8 +206,97 @@ table.dialogue th {
   color: white;
   padding: 10px 14px;
   text-align: left;
-  width: 50%;
 }
+table.dialogue th:nth-child(1),
+table.dialogue th:nth-child(2) { width: 34%; }
+table.dialogue th:nth-child(3) { width: 32%; }
+table.dialogue td:first-child,
+table.dialogue td:nth-child(2) {
+  border-right: 1px solid #eee0b8;
+}
+.c-fn {
+  font-size: 12px;
+  line-height: 1.6;
+  vertical-align: top;
+  background: #faf7ff;
+  color: #555;
+}
+.c-fn .fn-label {
+  margin-bottom: 6px;
+}
+.fn-label {
+  font-style: italic;
+  color: #5573b8;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.lang-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 6px;
+}
+.exp-item {
+  display: inline-block;
+  border-radius: 10px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  margin: 0;
+}
+.exp-item.c { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+.exp-item.m { background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; }
+.exp-item.h { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
+.exp-item.t { background: #ccfbf1; color: #115e59; border: 1px solid #5eead4; }
+.exp-item.s { background: #f3e8ff; color: #6b21a8; border: 1px solid #d8b4fe; }
+.exp-item.o { background: #ffedd5; color: #9a3412; border: 1px solid #fdba74; }
+.exp-item.p { background: #bae6fd; color: #0c4a6e; border: 1px solid #0ea5e9; }
+.exp-item.f { background: #fbcfe8; color: #9d174d; border: 1px solid #ec4899; }
+.exp-item.n { background: #e2e8f0; color: #334155; border: 1px solid #94a3b8; }
+.exp-item.a { background: #d9f99d; color: #3f6212; border: 1px solid #84cc16; }
+.exp-item.tm { background: #fecaca; color: #991b1b; border: 1px solid #f87171; }
+.lang-hl {
+  cursor: help;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+  text-decoration: none;
+  border: 1.5px solid transparent;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+}
+.lang-hl.c { background: #fef3c7 !important; color: #92400e !important; border-color: #f59e0b !important; }
+.lang-hl.m { background: #dbeafe !important; color: #1e40af !important; border-color: #3b82f6 !important; }
+.lang-hl.h { background: #dcfce7 !important; color: #166534 !important; border-color: #22c55e !important; }
+.lang-hl.t { background: #ccfbf1 !important; color: #115e59 !important; border-color: #14b8a6 !important; }
+.lang-hl.s { background: #f3e8ff !important; color: #6b21a8 !important; border-color: #a855f7 !important; }
+.lang-hl.o { background: #ffedd5 !important; color: #9a3412 !important; border-color: #f97316 !important; }
+.lang-hl.p { background: #bae6fd !important; color: #0c4a6e !important; border-color: #0ea5e9 !important; }
+.lang-hl.f { background: #fbcfe8 !important; color: #9d174d !important; border-color: #ec4899 !important; }
+.lang-hl.n { background: #e2e8f0 !important; color: #334155 !important; border-color: #94a3b8 !important; }
+.lang-hl.a { background: #d9f99d !important; color: #3f6212 !important; border-color: #84cc16 !important; }
+.lang-hl.tm { background: #fecaca !important; color: #991b1b !important; border-color: #f87171 !important; }
+mark.lang-hl { background: inherit; }
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0;
+  align-items: center;
+}
+.legend .lbl { font-size: 13px; font-weight: 700; color: #4b0082; margin-right: 4px; }
+.legend .chip { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 10px; }
+.chip.c { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+.chip.m { background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; }
+.chip.h { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
+.chip.t { background: #ccfbf1; color: #115e59; border: 1px solid #5eead4; }
+.chip.s { background: #f3e8ff; color: #6b21a8; border: 1px solid #d8b4fe; }
+.chip.o { background: #ffedd5; color: #9a3412; border: 1px solid #fdba74; }
+.chip.p { background: #bae6fd; color: #0c4a6e; border: 1px solid #0ea5e9; }
+.chip.f { background: #fbcfe8; color: #9d174d; border: 1px solid #ec4899; }
+.chip.n { background: #e2e8f0; color: #334155; border: 1px solid #94a3b8; }
+.chip.a { background: #d9f99d; color: #3f6212; border: 1px solid #84cc16; }
+.chip.tm { background: #fecaca; color: #991b1b; border: 1px solid #f87171; }
 
 table.dialogue td {
   padding: 10px 14px;
@@ -436,6 +525,9 @@ table.dialogue tr.active-row td {
 
 <div class="page-header">
   <h1>Essential Workplace Communication: Effective Oral Interaction (LAN3107)</h1>
+  <div style="text-align:center; margin: 14px 0;">
+    <img src="scan_me.png" alt="Scan Me" style="max-width:180px; width:100%; height:auto; display:block; margin:0 auto; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.12);">
+  </div>
   <p>Unit 6 — CA Practice 3</p>
   <p class="presented-by">Presented by Rebecca Tang</p>
   <div class="cn-toggle-wrap">
@@ -525,10 +617,24 @@ table.dialogue tr.active-row td {
 
   </div>
 
-  <div class="tab-content" id="tab-1">
+      <div class="tab-content" id="tab-1">
 
     <h1 data-cn="参考回答">Possible Response</h1>
-    <p style="color:#666; margin-bottom:16px;" data-cn="学生A（Rachel）与学生B（Marcus）的建议对话">Suggested conversation between Student A (Rachel) and Student B (Marcus)</p>
+    <p style="color:#666; margin-bottom:16px;" data-cn="学生A（Rachel）与学生B（Marcus）的建议对话。右栏「斜体蓝字」列明每轮对话的沟通功能；「彩色标签」指出并解释语言的使用（时态、情态动词、衔接词、闲聊与观点等）。参考 Teaching Unit 2 (Small Talk), Unit 4 (Project Stages) 和 Unit 5 (Opinions) 的语言解释。">Suggested conversation between Student A (Rachel) and Student B (Marcus). The right-hand column shows the <strong>communicative functions</strong> of each exchange (in <em>italic blue</em>) and <strong>coloured tags</strong> that point out the words/phrases used (tenses, modals, cohesive devices, small talk & opinions, etc.). Refer to <em>Teaching</em> Unit 2 (Small Talk), Unit 4 (Project Stages) and Unit 5 (Opinions) for language explanations. Modelled closely on <em>Practice 2 Tab 2</em>.</p>
+    <div class="legend">
+      <span class="lbl" data-cn="高亮颜色图例">Highlight colour key</span>
+      <span class="chip c">Contraction</span>
+      <span class="chip m">Modal verb + bare infinitive</span>
+      <span class="chip h">Cohesive device</span>
+      <span class="chip tm">Time marker</span>
+      <span class="chip t">Present perfect</span>
+      <span class="chip p">Present continuous</span>
+      <span class="chip f">Simple future</span>
+      <span class="chip n">Simple (pres./past)</span>
+      <span class="chip a">Agreement</span>
+      <span class="chip s">Small talk &amp; follow-up questions</span>
+      <span class="chip o">Opinions &amp; reasons</span>
+    </div>
 
     <div class="controls-bar">
       <label>Speed:</label>
@@ -542,117 +648,103 @@ table.dialogue tr.active-row td {
 
     <table class="dialogue">
       <thead>
-        <tr><th>Student A — Rachel Wong</th><th>Student B — Marcus Leung</th></tr>
+        <tr><th>Student A — Rachel Wong</th><th>Student B — Marcus Leung</th><th>Communicative Functions &amp; Language Explanations</th></tr>
       </thead>
       <tbody id="dialogueBody">
-        <tr class="section-label"><td colspan="2" data-cn="1. 问候你的同事并介绍自己">1. Greet your colleague and introduce yourself</td></tr>
+        <tr class="section-label"><td colspan="3" data-cn="1. 问候你的同事并介绍自己">1. Greet your colleague and introduce yourself</td></tr>
         <tr>
-          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a01.mp3', this)" data-src="audio/a01.mp3"></button><span data-cn="嗨。我想我们还没正式见过面。我是数字营销部的Rachel Wong。很高兴认识你。">'Hi. I don't think we've met yet. I'm Rachel Wong from the digital marketing department. It's nice to meet you.'</span></div></td>
-          <td></td>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a01.mp3', this)" data-src="audio/a01.mp3"></button><span data-cn="嗨。我想我们还没正式见过面。我是数字营销部的Rachel Wong。很高兴认识你。">'Hi. I <mark class="lang-hl c" title="Contraction — do not → don't">don't</mark> think <mark class="lang-hl t" title="Present perfect — have + past participle (experience up to now, Teaching Unit 4)">we've met</mark> yet. <mark class="lang-hl c" title="Contraction — I am">I'm</mark> Rachel Wong from the digital marketing department. <mark class="lang-hl c" title="Contraction — It is">It's</mark> nice to meet you.'</span></div></td>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b01.mp3', this)" data-src="audio/b01.mp3"></button><span data-cn="嗨，Rachel。我是IT部的Marcus Leung。也很高兴认识你。你觉得这次活动到目前为止怎么样？">'Hi, Rachel. <mark class="lang-hl c" title="Contraction — I am">I'm</mark> Marcus Leung from the IT department. <mark class="lang-hl c" title="Contraction — It is">It's</mark> nice to meet you too. <mark class="lang-hl s" title="Small talk — Wh- question (present continuous for current event, Teaching Unit 2.4)">How are you enjoying the event</mark> <mark class="lang-hl tm" title="Time marker — so far (Teaching Unit 4, Stage 1: Present Perfect)">so far?</mark>'</span></div></td>
+          <td class="c-fn"> <div class="fn-label">Greeting · Introducing yourself · Making small talk (follow-up Wh- question)</div> <div class="lang-tags"> <span class="exp-item c">Contractions — "don't" (do not) / "I'm" (I am) / "It's" (It is) / "we've" (we have)</span> <span class="exp-item t">Present perfect (experience) — "we've met" </span> <span class="exp-item s">Follow-up Wh- question — "How are you enjoying the event so far?" (present continuous)</span> <span class="exp-item tm">Time marker — "so far" (already/so far/recently)</span></div> </td>
+        </tr>
+        <tr>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a02.mp3', this)" data-src="audio/a02.mp3"></button><span data-cn="挺不错的，谢谢。这是个放松和跟平时团队以外的人聊天的好机会。你呢？">'<mark class="lang-hl c" title="Contraction — It is">It's</mark> <mark class="lang-hl o" title="Positive comment — quite nice">quite nice</mark>, thanks. <mark class="lang-hl c" title="Contraction — It is">It's</mark> a good chance to relax and talk to people outside the usual team. <mark class="lang-hl s" title="Small talk — follow-up question (Unit 2)">How about you?</mark>'</span></div></td>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b02.mp3', this)" data-src="audio/b02.mp3"></button><span data-cn="是的，我也很享受！跟不同团队的同事聊天，我总是能学到新东西。">'Yes, <mark class="lang-hl c" title="Contraction — I am">I'm</mark> enjoying it too! <mark class="lang-hl o" title="Positive comment — always learn something new">always learn something new</mark> when I talk to people from different teams.'</span></div></td>
+          <td class="c-fn"> <div class="fn-label">Responding to small talk · Giving a general positive comment</div> <div class="lang-tags"> <span class="exp-item c">Contractions — "It's" / "I'm"</span> <span class="exp-item s">Short answer + follow-up — "How about you?" (Echo → Wh- → Comment)</span> <span class="exp-item o">Positive comment — "quite nice / always learn something new"</span></div> </td>
+        </tr>
+        <tr class="section-label"><td colspan="3" data-cn="2. 就以下话题进行闲聊（续）">2. Make small talk on the following topics (continued)</td></tr>
+        <tr>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a03.mp3', this)" data-src="audio/a03.mp3"></button><span data-cn="你说得对。我们能从彼此的工作经历中学到这么多，这真的很神奇。">'<mark class="lang-hl a" title="Agreeing — You're right (Unit 2)">You're right.</mark> <mark class="lang-hl c" title="Contraction — It is">It's</mark> amazing how much we can learn from each other's work experiences.'</span></div></td>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b03.mp3', this)" data-src="audio/b03.mp3"></button><span data-cn="说到学习新事物，你最近有没有用什么有用的应用或工具来工作？">'<mark class="lang-hl h" title="Cohesive device for transition — Speaking of...">Speaking of</mark> learning new things, <mark class="lang-hl t" title="Present perfect continuous — have + been + verb-ing (recent ongoing use, Unit 4)">have you been using</mark> any useful apps or tools for work <mark class="lang-hl tm" title="Time marker — lately">lately?</mark>'</span></div></td>
+          <td class="c-fn"> <div class="fn-label">Agreeing · Transitioning to a new small-talk topic · Asking about recent tools</div> <div class="lang-tags"> <span class="exp-item a">Short agreement — "You're right."</span> <span class="exp-item h">Cohesive device for transition — "Speaking of..."</span> <span class="exp-item t">Present perfect continuous — "have you been using... lately?" </span> <span class="exp-item tm">Time marker — "lately" (so far/already/lately)</span> <span class="exp-item c">Contractions — "You're" / "It's"</span></div> </td>
+        </tr>
+        <tr class="section-label"><td colspan="3" data-cn="a. 你最近工作常用的一款实用应用或工具">a. A useful app or tool you&apos;ve been using for work lately</td></tr>
+        <tr>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a04.mp3', this)" data-src="audio/a04.mp3"></button><span data-cn="有！我一直在用一个叫Clyde的AI写作助手。它能帮我更快地起草社媒标题和构思活动点子。你呢？">'Yes! <mark class="lang-hl t" title="Present perfect continuous — have + been + verb-ing (Unit 4)">I've been using</mark> a new AI writing assistant called Clyde. It <mark class="lang-hl h" title="Cohesive device — giving purpose: helps me to...">helps me</mark> <mark class="lang-hl h" title="Giving purpose — to + verb / helps ... to...">to draft</mark> social media captions and campaign ideas faster. <mark class="lang-hl s" title="Follow-up question">What about you?</mark>'</span></div></td>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b04.mp3', this)" data-src="audio/b04.mp3"></button><span data-cn="真厉害！我一直在用一个叫FocusGrid的新任务管理工具。它真的很适合整理我的任务，把笔记都放在一处，帮我省了很多时间。">'<mark class="lang-hl s" title="Echoing positive comment — That's impressive! (Unit 2.2)">That's impressive!</mark> <mark class="lang-hl t" title="Present perfect continuous">I've been using</mark> a new task management tool called FocusGrid. <mark class="lang-hl c" title="Contraction — It is">It's</mark> really good for organising my tasks and keeping all my notes in one place. It <mark class="lang-hl n" title="Present simple — habitual result">saves</mark> me a lot of time.'</span></div></td>
+          <td class="c-fn"> <div class="fn-label">Describing a recent tool (ongoing use) · Giving positive comment · Echoing</div> <div class="lang-tags"> <span class="exp-item t">Present perfect continuous — "I've been using..."</span> <span class="exp-item s">Echo words — "That's impressive!" </span> <span class="exp-item c">Contraction — "I've" / "That's" / "It's"</span> <span class="exp-item h">Giving purpose — "helps me to draft..." / "to spread the word"</span> <span class="exp-item h">Workplace collocation — "draft captions" / "organise tasks"</span> <span class="exp-item s">Follow-up — "What about you?"</span></div> </td>
+        </tr>
+        <tr>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a05.mp3', this)" data-src="audio/a05.mp3"></button><span data-cn="听起来很实用！我改天也要试试。">'<mark class="lang-hl s" title="Echo words — That sounds + adjective (Unit 2.2)">That sounds very useful!</mark> <mark class="lang-hl c" title="Contraction — I will">I'll</mark> <mark class="lang-hl m" title="Modal verb — will + bare infinitive (future intention, Unit 4 Stage 3)">have to try</mark> it sometime.'</span></div></td>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a06.mp3', this)" data-src="audio/a06.mp3"></button><span data-cn="那么，你们部门最近在忙什么？">'<mark class="lang-hl h" title="Cohesive device — So, (transition, Unit 2.5)">So,</mark> <mark class="lang-hl s" title="Wh- question about current work (present continuous, Unit 4 Stage 2)">what's your department working on</mark> <mark class="lang-hl tm" title="Time marker — these days">these days?</mark>'</span></div></td>
+          <td class="c-fn"> <div class="fn-label">Echoing with adjective · Showing future intention · Transitioning to work project (Wh- question)</div> <div class="lang-tags"> <span class="exp-item s">Echo formula — "That sounds + adjective!" </span> <span class="exp-item o">Positive adjective — "very useful"</span> <span class="exp-item c">Contraction — "I'll" (I will) / "what's" (what is)</span> <span class="exp-item h">Cohesive device — "So, ..."</span> <span class="exp-item p">Present continuous — "what's ... working on these days?" </span> <span class="exp-item tm">Time marker — "these days"</span></div> </td>
         </tr>
         <tr>
           <td></td>
-          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b01.mp3', this)" data-src="audio/b01.mp3"></button><span data-cn="嗨，Rachel。我是IT部的Marcus Leung。也很高兴认识你。你觉得这次活动到目前为止怎么样？">'Hi, Rachel. I'm Marcus Leung from the IT department. It's nice to meet you too. How are you enjoying the event so far?'</span></div></td>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b05.mp3', this)" data-src="audio/b05.mp3"></button><span data-cn="我们目前正在改进员工内部网的登录身份验证系统。我们已经完成新设计，并开始用一小部分用户进行测试。未来几个月，我们计划修复剩余问题，并在年底前向全体员工推行。我们也在为每个人准备培训资料。">'<mark class="lang-hl p" title="Present continuous — are + verb-ing (Stage 2: Task in Progress, Unit 4)">We're currently working on improving</mark> the authentication login system of the staff intranet. <mark class="lang-hl t" title="Present perfect — have + past participle (Stage 1: Task Completed, Unit 4) + already">We've completed</mark> the new design and <mark class="lang-hl t" title="Present perfect — started (have started → started)">started testing</mark> with a small group of users. <mark class="lang-hl tm" title="Time marker — future (Unit 4 Stage 3)">In the coming months,</mark> we <mark class="lang-hl f" title="Simple future / plan to (Stage 3: Work to Complete)">plan to fix</mark> the remaining issues and <mark class="lang-hl f" title="Simple future — will + bare infinitive">roll it out</mark> to all staff <mark class="lang-hl tm" title="Time marker — by the end of the year">by the end of the year</mark>. <mark class="lang-hl p" title="Present continuous — are + verb-ing (ongoing, Unit 4)">We're also preparing</mark> training materials for everyone.'</span></div></td>
+          <td class="c-fn"> <div class="fn-label">Talking about work project — three stages</div> <div class="lang-tags"> <span class="exp-item p">Present continuous — "We're currently working... / We're also preparing..."</span> <span class="exp-item t">Present perfect — "We've completed..." (+ already/so far)</span> <span class="exp-item f">Simple future / plan to — "plan to fix..." / "will roll it out"</span> <span class="exp-item tm">Time markers — "currently", "In the coming months", "by the end of the year" </span> <span class="exp-item c">Contractions — "We're" / "We've"</span> <span class="exp-item h">Workplace collocations — "improve the system" (Technology), "complete the design" (Products), "roll it out" (Promotion)</span> <span class="exp-item m">Collective noun agreement — "The IT department has..." vs "We've..." </span></div> </td>
         </tr>
         <tr>
-          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a02.mp3', this)" data-src="audio/a02.mp3"></button><span data-cn="挺不错的，谢谢。这是个放松和跟平时团队以外的人聊天的好机会。你呢？">'It's quite nice, thanks. It's a good chance to relax and talk to people outside the usual team. How about you?'</span></div></td>
-          <td></td>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a07.mp3', this)" data-src="audio/a07.mp3"></button><span data-cn="听起来是个稳妥的计划。它应该能让登录顺畅得多，也更安全。">'Sounds like a <mark class="lang-hl o" title="Positive comment — solid plan">solid plan</mark>. It <mark class="lang-hl m" title="Modal verb — should + bare infinitive (prediction / expectation, Unit 5)">should make</mark> logging in much <mark class="lang-hl o" title="Comparative — smoother and more secure">smoother and more secure</mark>.'</span></div></td>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b06.mp3', this)" data-src="audio/b06.mp3"></button><span data-cn="没错。你们部门呢？">'<mark class="lang-hl a" title="Short agreement — That's right (Unit 2)">That's right.</mark> <mark class="lang-hl s" title="Follow-up question — What about...? (Unit 2.4)">What about your department?</mark>'</span></div></td>
+          <td class="c-fn"> <div class="fn-label">Giving a positive comment · Expressing expectation (modal should) · Asking follow-up (Wh- question)</div> <div class="lang-tags"> <span class="exp-item o">Positive comment — "solid plan" / "smoother and more secure"</span> <span class="exp-item m">Modal verb — "should make" </span> <span class="exp-item a">Short agreement — "That's right."</span> <span class="exp-item s">Follow-up Wh- question — "What about your department?" </span> <span class="exp-item c">Contraction — "That's"</span></div> </td>
         </tr>
         <tr>
-          <td></td>
-          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b02.mp3', this)" data-src="audio/b02.mp3"></button><span data-cn="是的，我也很享受！跟不同团队的同事聊天，我总是能学到新东西。">'Yes, I'm enjoying it too! I always learn something new when I talk to people from different teams.'</span></div></td>
-        </tr>
-        <tr class="section-label"><td colspan="2" data-cn="2. 就以下话题进行闲聊（续）">2. Make small talk on the following topics (continued)</td></tr>
-        <tr>
-          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a03.mp3', this)" data-src="audio/a03.mp3"></button><span data-cn="你说得对。我们能从彼此的工作经历中学到这么多，这真的很神奇。">'You're right. It's amazing how much we can learn from each other's work experiences.'</span></div></td>
-          <td></td>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a08.mp3', this)" data-src="audio/a08.mp3"></button><span data-cn="我们正在通过社交媒体推广公司新的AI内容创作工具。我们已经制作了几条短视频，也投放了一些定向广告，到目前为止互动效果相当鼓舞人心。">'<mark class="lang-hl p" title="Present continuous (Stage 2: Task in Progress, Unit 4)">We're promoting</mark> the company's new AI-powered content creation tool through social media. <mark class="lang-hl t" title="Present perfect (Stage 1: Task Completed) + already (Unit 4)">We've already created</mark> several short videos and <mark class="lang-hl t" title="Present perfect — have + past participle">run</mark> some targeted ads. The engagement <mark class="lang-hl tm" title="Time marker — so far (Unit 4)">so far</mark> <mark class="lang-hl t" title="Present perfect — has + past participle (Unit 4)">has been</mark> quite encouraging.'</span></div></td>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b07.mp3', this)" data-src="audio/b07.mp3"></button><span data-cn="真棒！未来几个月你们有什么计划？">'Nice! <mark class="lang-hl s" title="Short reaction token — Nice! (Unit 2.2)">Nice!</mark> <mark class="lang-hl s" title="Follow-up question about future plans (Wh- question, Unit 4 Stage 3)">What are your plans for the coming months?</mark>'</span></div></td>
+          <td class="c-fn"> <div class="fn-label">Describing department project · Asking about future plans</div> <div class="lang-tags"> <span class="exp-item p">Present continuous — "We're promoting..." </span> <span class="exp-item t">Present perfect — "We've already created... / has been" + "so far" / "already" </span> <span class="exp-item tm">Time marker — "already" / "so far" </span> <span class="exp-item c">Contraction — "We're" / "We've" / "has been" (= has)</span> <span class="exp-item h">Workplace collocations — "promote a tool" (Promotion), "run targeted ads" (Promotion), "create videos" (Products)</span> <span class="exp-item s">Short reaction — "Nice!" + Wh- question (future) — "What are your plans...?"</span></div> </td>
         </tr>
         <tr>
-          <td></td>
-          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b03.mp3', this)" data-src="audio/b03.mp3"></button><span data-cn="说到学习新事物，你最近有没有用什么有用的应用或工具来工作？">'Speaking of learning new things, have you been using any useful apps or tools for work lately?'</span></div></td>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a09.mp3', this)" data-src="audio/a09.mp3"></button><span data-cn="我们计划制作一个完整的内容系列，包括更多教程式视频和用户见证。我们还想与几位业内网红合作做直播演示和测评。希望这能帮助我们触达更广的受众并增加注册人数。">'We <mark class="lang-hl f" title="Simple future — plan to + verb (Stage 3, Unit 4)">plan to create</mark> a full content series, including more tutorial-style videos and user testimonials. We also <mark class="lang-hl f" title="Simple future — want to + verb (Stage 3)">want to collaborate</mark> with a few industry influencers to do live demos and reviews. <mark class="lang-hl h" title="Cohesive device — Hopefully (Unit 5, Skill 3: Stating Effects)">Hopefully</mark> this <mark class="lang-hl m" title="Modal verb — will + bare infinitive (result / prediction, Unit 5 Skill 3)">will help</mark> us <mark class="lang-hl h" title="Workplace collocation — reach a wider audience (Promotion)">reach a wider audience</mark> and <mark class="lang-hl h" title="Workplace collocation — increase sign-ups">increase sign-ups</mark>.'</span></div></td>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b08.mp3', this)" data-src="audio/b08.mp3"></button><span data-cn="听起来是个考虑周全的计划。">'<mark class="lang-hl s" title="Positive comment — echo formula That sounds like... (Unit 2.3)">That sounds like a well-thought-out plan.</mark>'</span></div></td>
+          <td class="c-fn"> <div class="fn-label">Talking about future work · Giving a positive comment</div> <div class="lang-tags"> <span class="exp-item f">Simple future — "plan to create" / "want to collaborate" / "will help" </span> <span class="exp-item m">Modal verb — "will help" </span> <span class="exp-item h">Cohesive device — "Hopefully" (effect)</span> <span class="exp-item h">Workplace collocations — "create a content series" (Social Media), "collaborate with influencers" (Promotion), "reach a wider audience" (Promotion), "increase sign-ups"</span> <span class="exp-item s">Positive echo — "That sounds like a well-thought-out plan." </span></div> </td>
         </tr>
-        <tr class="section-label"><td colspan="2" data-cn="a. 你最近工作常用的一款实用应用或工具">a. A useful app or tool you&apos;ve been using for work lately</td></tr>
-        <tr>
-          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a04.mp3', this)" data-src="audio/a04.mp3"></button><span data-cn="有！我一直在用一个叫Clyde的AI写作助手。它能帮我更快地起草社媒标题和构思活动点子。你呢？">'Yes! I've been using a new AI writing assistant called Clyde. It helps me draft social media captions and campaign ideas faster. What about you?'</span></div></td>
-          <td></td>
-        </tr>
+        <tr class="section-label"><td colspan="3" data-cn="3. 谈谈你对新公司政策（一周四天工作制）的看法，并用理由支持你的观点">3. Share your opinion on a new company policy — Four-day work week</td></tr>
         <tr>
           <td></td>
-          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b04.mp3', this)" data-src="audio/b04.mp3"></button><span data-cn="真厉害！我一直在用一个叫FocusGrid的新任务管理工具。它真的很适合整理我的任务，把笔记都放在一处，帮我省了很多时间。">'That's impressive! I've been using a new task management tool called FocusGrid. It's really good for organising my tasks and keeping all my notes in one place. It saves me a lot of time.'</span></div></td>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b09.mp3', this)" data-src="audio/b09.mp3"></button><span data-cn="顺便问一下，你觉得新的一周四天工作制怎么样？">'<mark class="lang-hl h" title="Cohesive device — By the way, (Unit 2.5: Transitioning, Teaching p. Transitioning)">By the way,</mark> <mark class="lang-hl o" title="Skill: Inviting opinions — What do you think of...? (Unit 5, Part A/B)">what do you think of</mark> the new four-day work week?'</span></div></td>
+          <td class="c-fn"> <div class="fn-label">Transitioning (By the way) · Inviting opinions</div> <div class="lang-tags"> <span class="exp-item h">Cohesive device — "By the way," (That reminds me / By the way)</span> <span class="exp-item o">Inviting opinions — "what do you think of...?" (In my view... / What do you think...?)</span> <span class="exp-item s">Follow-up question — Wh- question inviting opinion</span></div> </td>
         </tr>
         <tr>
-          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a05.mp3', this)" data-src="audio/a05.mp3"></button><span data-cn="听起来很实用！我改天也要试试。">'That sounds very useful! I'll have to try it sometime.'</span></div></td>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a10.mp3', this)" data-src="audio/a10.mp3"></button><span data-cn="其实我对它很期待。我觉得这是个很棒的主意，因为它给了我们更好的工作与生活平衡。周五休息能让我们好好充电，虽然周一到周四每天的工作时间会稍微长一点。我也觉得它能提升我们在那四个工作日里的创造力和生产力。">'<mark class="lang-hl o" title="Personal feeling — I'm quite excited (Unit 5, Skill 5: Personal Feelings)">I'm quite excited</mark> about it, actually. <mark class="lang-hl o" title="Expressing opinions — I think (Unit 5, Skill 1: Expressing Opinions)">I think</mark> <mark class="lang-hl c" title="Contraction — It is">it's</mark> <mark class="lang-hl o" title="Positive adjective — great idea">a great idea</mark> <mark class="lang-hl h" title="Stating causes — because (Unit 5, Skill 2: Stating Causes)">because</mark> it gives us much better work-life balance. Having Fridays off <mark class="lang-hl m" title="Modal verb — should + bare infinitive (effect, Unit 5 Skill 3)">should help</mark> us recharge properly, <mark class="lang-hl h" title="Concession — even though (Unit 5)">even though</mark> the daily hours from Monday to Thursday are a bit longer. I also <mark class="lang-hl o" title="Expressing opinions — I also think (Skill 1)">think</mark> it <mark class="lang-hl m" title="Modal verb — could + bare infinitive (possibility, Skill 3)">could boost</mark> our creativity and productivity during those four working days.'</span></div></td>
           <td></td>
-        </tr>
-        <tr>
-          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a06.mp3', this)" data-src="audio/a06.mp3"></button><span data-cn="那么，你们部门最近在忙什么？">'So, what's your department working on these days?'</span></div></td>
-          <td></td>
+          <td class="c-fn"> <div class="fn-label">Expressing personal feeling (I’m excited) + opinion (I think) · Giving reasons (cause: because) · Stating effects (should/could)</div> <div class="lang-tags"> <span class="exp-item o">Personal feeling — "I'm quite excited" </span> <span class="exp-item o">Expressing opinions — "I think it's a great idea" (In my view... / I believe...)</span> <span class="exp-item h">Stating causes — "because" (...because / since / due to)</span> <span class="exp-item m">Modal verbs (effect/possibility) — "should help" / "could boost" (which leads to... / should/could)</span> <span class="exp-item c">Contraction — "I'm" / "it's"</span> <span class="exp-item h">Concession — "even though" </span> <span class="exp-item o">Positive adjective — "great idea"</span></div> </td>
         </tr>
         <tr>
           <td></td>
-          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b05.mp3', this)" data-src="audio/b05.mp3"></button><span data-cn="我们目前正在改进员工内部网的登录身份验证系统。我们已经完成新设计，并开始用一小部分用户进行测试。未来几个月，我们计划修复剩余问题，并在年底前向全体员工推行。我们也在为每个人准备培训资料。">'We're currently working on improving the authentication login system of the staff intranet. We've completed the new design and started testing with a small group of users. In the coming months, we plan to fix the remaining issues and roll it out to all staff by the end of the year. We're also preparing training materials for everyone.'</span></div></td>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b10.mp3', this)" data-src="audio/b10.mp3"></button><span data-cn="我同意。周五休息能让我们感觉更精神。不过，也可能有一些。较长的每日工作时间可能一开始会很累，而需要每日协调的团队（比如客服团队）可能难以适应这种压缩的日程。">'<mark class="lang-hl a" title="Agreement — I agree">I agree</mark>. Having Fridays off <mark class="lang-hl m" title="Modal verb — should + bare infinitive (effect)">should help</mark> us feel more refreshed. <mark class="lang-hl h" title="Contrast — However, (Unit 5, cohesive)">However,</mark> there <mark class="lang-hl m" title="Modal verb — might + bare infinitive (possibility, Unit 5)">might be</mark> some drawbacks too. The longer daily hours <mark class="lang-hl m" title="Modal verb — might + bare infinitive">might be</mark> tiring at first, and teams that need daily coordination, <mark class="lang-hl o" title="Giving example — such as... (Unit 5, Skill 6: For example)">such as the customer service team</mark>, <mark class="lang-hl m" title="Modal verb — might + bare infinitive">might find</mark> it challenging to adjust to the compressed schedule.'</span></div></td>
+          <td class="c-fn"> <div class="fn-label">Agreeing · Stating effects (should) · Introducing drawbacks with examples</div> <div class="lang-tags"> <span class="exp-item a">Agreement — "I agree" </span> <span class="exp-item m">Modals (possibility/effect) — "should help" / "might be" / "might find" </span> <span class="exp-item h">Contrast — "However," </span> <span class="exp-item o">Giving example — "such as the customer service team" (For example / such as)</span> <span class="exp-item h">Cause-effect — longer hours → tiring </span></div> </td>
         </tr>
         <tr>
-          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a07.mp3', this)" data-src="audio/a07.mp3"></button><span data-cn="听起来是个稳妥的计划。它应该能让登录顺畅得多，也更安全。">'Sounds like a solid plan. It should make logging in much smoother and more secure.'</span></div></td>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a11.mp3', this)" data-src="audio/a11.mp3"></button><span data-cn="这是个合理的担忧。更长的天数需要一些时间适应，所以我们需要周密的计划和良好的沟通，以确保一切顺利。但总体而言，我认为好处大于坏处。员工会更积极。">'<mark class="lang-hl o" title="Validating concern — That's a valid concern (Unit 5, Part B: Responding)">That's a valid concern.</mark> The longer days <mark class="lang-hl m" title="Modal verb — will + bare infinitive (prediction)">will take</mark> some time to get used to, and <mark class="lang-hl m" title="Modal verb — will + need to (obligation)">we'll need</mark> careful planning and good communication <mark class="lang-hl h" title="Purpose — to make sure">to make sure</mark> everything runs smoothly. <mark class="lang-hl h" title="Cohesive device — But overall, (Unit 5: Summary)">But overall,</mark> <mark class="lang-hl o" title="Expressing opinions — I think (Skill 1)">I think</mark> <mark class="lang-hl o" title="Opinion — the benefits outweigh the drawbacks">the benefits outweigh the drawbacks</mark>. Employees <mark class="lang-hl m" title="Modal verb — will + bare infinitive (prediction, Skill 3)">will likely be</mark> more motivated.'</span></div></td>
           <td></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b06.mp3', this)" data-src="audio/b06.mp3"></button><span data-cn="没错。你们部门呢？">'That's right. What about your department?'</span></div></td>
-        </tr>
-        <tr>
-          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a08.mp3', this)" data-src="audio/a08.mp3"></button><span data-cn="我们正在通过社交媒体推广公司新的AI内容创作工具。我们已经制作了几条短视频，也投放了一些定向广告，到目前为止互动效果相当鼓舞人心。">'We're promoting the company's new AI-powered content creation tool through social media. We've already created several short videos and run some targeted ads. The engagement so far has been quite encouraging.'</span></div></td>
-          <td></td>
+          <td class="c-fn"> <div class="fn-label">Validating concern · Expressing overall opinion · Predicting result</div> <div class="lang-tags"> <span class="exp-item o">Validating — "That's a valid concern" </span> <span class="exp-item m">Modals — "will take" / "we'll need" / "will likely be" (future prediction)</span> <span class="exp-item h">Cohesive device — "But overall," (contrast/summary,)</span> <span class="exp-item o">Opinion — "I think the benefits outweigh..." </span> <span class="exp-item c">Contraction — "That's" / "we'll"</span> <span class="exp-item h">Purpose — "to make sure..." (to + verb,)</span></div> </td>
         </tr>
         <tr>
           <td></td>
-          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b07.mp3', this)" data-src="audio/b07.mp3"></button><span data-cn="真棒！未来几个月你们有什么计划？">'Nice! What are your plans for the coming months?'</span></div></td>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b11.mp3', this)" data-src="audio/b11.mp3"></button><span data-cn="我也这么觉得。这可能还能帮助公司在当今竞争激烈的就业市场中吸引和留住人才。许多公司都在探索这样的弹性工作安排。">'<mark class="lang-hl a" title="Agreement — I think so too (Unit 5 Part B)">I think so too.</mark> It <mark class="lang-hl m" title="Modal verb — might + bare infinitive (possibility, Unit 5 Skill 3)">might also help</mark> the company <mark class="lang-hl h" title="Workplace collocation — attract and retain talent (Unit 4, Part 3: Planning)">attract and retain talent</mark> in today's competitive job market. <mark class="lang-hl o" title="Giving example — Many companies are exploring... (Unit 5, Skill 6)">Many companies are exploring</mark> flexible work arrangements like this.'</span></div></td>
+          <td class="c-fn"> <div class="fn-label">Agreeing · Elaborating benefits (effect) · Giving example</div> <div class="lang-tags"> <span class="exp-item a">Agreement — "I think so too" </span> <span class="exp-item m">Modal verb — "might also help" </span> <span class="exp-item h">Workplace collocation — "attract and retain talent" </span> <span class="exp-item o">Giving example — "Many companies are exploring..." (For example / such as)</span> <span class="exp-item h">Present continuous — "are exploring" (current trend)</span></div> </td>
         </tr>
+        <tr class="section-label"><td colspan="3" data-cn="4. 礼貌地结束对话">4. End the conversation politely</td></tr>
         <tr>
-          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a09.mp3', this)" data-src="audio/a09.mp3"></button><span data-cn="我们计划制作一个完整的内容系列，包括更多教程式视频和用户见证。我们还想与几位业内网红合作做直播演示和测评。希望这能帮助我们触达更广的受众并增加注册人数。">'We plan to create a full content series, including more tutorial-style videos and user testimonials. We also want to collaborate with a few industry influencers to do live demos and reviews. Hopefully this will help us reach a wider audience and increase sign-ups.'</span></div></td>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a12.mp3', this)" data-src="audio/a12.mp3"></button><span data-cn="正是如此。好了，Marcus，很高兴和你聊天。我很开心了解了你们部门的更多情况，以及你对新的四天工作周的看法。这说明公司很关心我们的身心健康。">'Exactly. <mark class="lang-hl h" title="Cohesive — Well,">Well,</mark> Marcus, <mark class="lang-hl t" title="Present perfect — have + past participle (result up to now, Unit 4)">it's been</mark> great chatting with you. <mark class="lang-hl t" title="Present perfect — have + past participle (experience, Unit 4)">I've enjoyed</mark> learning more about your department and your thoughts on the new four-day work week. <mark class="lang-hl o" title="Positive comment — It shows the company cares">It shows the company cares</mark> about our well-being.'</span></div></td>
           <td></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b08.mp3', this)" data-src="audio/b08.mp3"></button><span data-cn="听起来是个考虑周全的计划。">'That sounds like a well-thought-out plan.'</span></div></td>
-        </tr>
-        <tr class="section-label"><td colspan="2" data-cn="3. 谈谈你对新公司政策（一周四天工作制）的看法，并用理由支持你的观点">3. Share your opinion on a new company policy — Four-day work week</td></tr>
-        <tr>
-          <td></td>
-          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b09.mp3', this)" data-src="audio/b09.mp3"></button><span data-cn="顺便问一下，你觉得新的一周四天工作制怎么样？">'By the way, what do you think of the new four-day work week?'</span></div></td>
-        </tr>
-        <tr>
-          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a10.mp3', this)" data-src="audio/a10.mp3"></button><span data-cn="其实我对它很期待。我觉得这是个很棒的主意，因为它给了我们更好的工作与生活平衡。周五休息能让我们好好充电，虽然周一到周四每天的工作时间会稍微长一点。我也觉得它能提升我们在那四个工作日里的创造力和生产力。">'I'm quite excited about it, actually. I think it's a great idea because it gives us much better work-life balance. Having Fridays off should help us recharge properly, even though the daily hours from Monday to Thursday are a bit longer. I also think it could boost our creativity and productivity during those four working days.'</span></div></td>
-          <td></td>
+          <td class="c-fn"> <div class="fn-label">Wrapping up · Showing appreciation · Present perfect for experience</div> <div class="lang-tags"> <span class="exp-item s">Ending politely — "Well, ... it's been great chatting..." </span> <span class="exp-item t">Present perfect — "it's been" (it has been) / "I've enjoyed" </span> <span class="exp-item o">Positive comment — "It shows the company cares..."</span> <span class="exp-item c">Contraction — "it's" / "I've"</span> <span class="exp-item h">Cohesive — "Well,"</span></div> </td>
         </tr>
         <tr>
           <td></td>
-          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b10.mp3', this)" data-src="audio/b10.mp3"></button><span data-cn="我同意。周五休息能让我们感觉更精神。不过，也可能有一些。较长的每日工作时间可能一开始会很累，而需要每日协调的团队（比如客服团队）可能难以适应这种压缩的日程。">'I agree. Having Fridays off should help us feel more refreshed. However, there might be some drawbacks too. The longer daily hours might be tiring at first, and teams that need daily coordination, such as the customer service team, might find it challenging to adjust to the compressed schedule.'</span></div></td>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b12.mp3', this)" data-src="audio/b12.mp3"></button><span data-cn="彼此彼此，Rachel。很高兴叙旧。我们很快再聊。">'<mark class="lang-hl s" title="Echo word — Likewise (Unit 2.2)">Likewise</mark>, Rachel. <mark class="lang-hl n" title="Past simple — It was good to catch up">It was good to catch up</mark>. <mark class="lang-hl c" title="Contraction — Let us">Let's</mark> <mark class="lang-hl s" title="Ending politely — Let's talk again soon.">talk again soon.</mark>'</span></div></td>
+          <td class="c-fn"> <div class="fn-label">Responding politely · Echoing · Suggesting future contact</div> <div class="lang-tags"> <span class="exp-item s">Echo word — "Likewise" </span> <span class="exp-item c">Contraction — "Let's" (Let us)</span> <span class="exp-item s">Ending politely — "Let's talk again soon." </span> <span class="exp-item n">Past simple — "It was good to catch up"</span></div> </td>
         </tr>
         <tr>
-          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a11.mp3', this)" data-src="audio/a11.mp3"></button><span data-cn="这是个合理的担忧。更长的天数需要一些时间适应，所以我们需要周密的计划和良好的沟通，以确保一切顺利。但总体而言，我认为好处大于坏处。员工会更积极。">'That's a valid concern. The longer days will take some time to get used to, and we'll need careful planning and good communication to make sure everything runs smoothly. But overall, I think the benefits outweigh the drawbacks. Employees will likely be more motivated.'</span></div></td>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a13.mp3', this)" data-src="audio/a13.mp3"></button><span data-cn="当然！好好享受活动的其余部分。">'<mark class="lang-hl a" title="Agreement — Absolutely!">Absolutely!</mark> <mark class="lang-hl s" title="Ending politely — Enjoy the rest... (Unit 2.6)">Enjoy the rest of the event.</mark>'</span></div></td>
           <td></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b11.mp3', this)" data-src="audio/b11.mp3"></button><span data-cn="我也这么觉得。这可能还能帮助公司在当今竞争激烈的就业市场中吸引和留住人才。许多公司都在探索这样的弹性工作安排。">'I think so too. It might also help the company attract and retain talent in today's competitive job market. Many companies are exploring flexible work arrangements like this.'</span></div></td>
-        </tr>
-        <tr class="section-label"><td colspan="2" data-cn="4. 礼貌地结束对话">4. End the conversation politely</td></tr>
-        <tr>
-          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a12.mp3', this)" data-src="audio/a12.mp3"></button><span data-cn="正是如此。好了，Marcus，很高兴和你聊天。我很开心了解了你们部门的更多情况，以及你对新的四天工作周的看法。这说明公司很关心我们的身心健康。">'Exactly. Well, Marcus, it's been great chatting with you. I've enjoyed learning more about your department and your thoughts on the new four-day work week. It shows the company cares about our well-being.'</span></div></td>
-          <td></td>
+          <td class="c-fn"> <div class="fn-label">Agreeing · Ending with good wishes</div> <div class="lang-tags"> <span class="exp-item a">Agreement — "Absolutely!" </span> <span class="exp-item s">Ending politely — "Enjoy the rest of the event." </span></div> </td>
         </tr>
         <tr>
           <td></td>
-          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b12.mp3', this)" data-src="audio/b12.mp3"></button><span data-cn="彼此彼此，Rachel。很高兴叙旧。我们很快再聊。">'Likewise, Rachel. It was good to catch up. Let's talk again soon.'</span></div></td>
-        </tr>
-        <tr>
-          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/a13.mp3', this)" data-src="audio/a13.mp3"></button><span data-cn="当然！好好享受活动的其余部分。">'Absolutely! Enjoy the rest of the event.'</span></div></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b13.mp3', this)" data-src="audio/b13.mp3"></button><span data-cn="你也是，Rachel。保重，回头见！">'You too, Rachel. Take care and see you around!'</span></div></td>
+          <td><div class="utterance"><button class="btn-icon" onclick="playAudio('audio/b13.mp3', this)" data-src="audio/b13.mp3"></button><span data-cn="你也是，Rachel。保重，回头见！">'<mark class="lang-hl s" title="Responding to good wishes — You too">You too</mark>, Rachel. <mark class="lang-hl s" title="Ending politely — Take care and see you around! (Unit 2.6)">Take care and see you around!</mark>'</span></div></td>
+          <td class="c-fn"> <div class="fn-label">Responding to good wishes · Ending politely</div> <div class="lang-tags"> <span class="exp-item s">Ending politely — "Take care and see you around!" </span> <span class="exp-item s">Responding to good wishes — "You too"</span></div> </td>
         </tr>
       </tbody>
     </table>
@@ -839,27 +931,36 @@ table.dialogue tr.active-row td {
   }
 
   function wrapWordsInEl(el) {
-    const text = el.textContent;
-    const words = text.split(/(\s+)/);
-    el.innerHTML = '';
-    words.forEach(w => {
-      if (w.trim() === '') {
-        el.appendChild(document.createTextNode(w));
-      } else {
-        const wordSpan = document.createElement('span');
-        wordSpan.className = 'word';
-        wordSpan.textContent = w;
-        wordSpan.addEventListener('click', function(e) {
-          e.stopPropagation();
-          speakWord(w.replace(/[^a-zA-Z'-]/g, ''), this);
-        });
-        el.appendChild(wordSpan);
-      }
-    });
+    const walk = (node) => {
+      Array.from(node.childNodes).forEach(child => {
+        if (child.nodeType === Node.TEXT_NODE) {
+          const frag = document.createDocumentFragment();
+          child.textContent.split(/(\s+)/).forEach(w => {
+            if (w === '') return;
+            if (w.trim() === '') {
+              frag.appendChild(document.createTextNode(w));
+            } else {
+              const wordSpan = document.createElement('span');
+              wordSpan.className = 'word';
+              wordSpan.textContent = w;
+              wordSpan.addEventListener('click', function(e) {
+                e.stopPropagation();
+                speakWord(w.replace(/[^a-zA-Z'-]/g, ''), this);
+              });
+              frag.appendChild(wordSpan);
+            }
+          });
+          node.replaceChild(frag, child);
+        } else if (child.nodeType === Node.ELEMENT_NODE) {
+          walk(child);
+        }
+      });
+    };
+    walk(el);
   }
 
   function initWordClick() {
-    document.querySelectorAll('#dialogueBody .utterance span').forEach(wrapWordsInEl);
+    document.querySelectorAll('#dialogueBody .utterance > span').forEach(wrapWordsInEl);
   }
 
   function speakWord(word, el) {
