@@ -176,6 +176,47 @@ h3 {
   margin-bottom: 30px;
 }
 
+.role-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  align-items: start;
+}
+
+.role-grid .task-section {
+  margin-bottom: 0;
+  background: #fffdf4;
+  border: 2px solid #9370db;
+  border-radius: 12px;
+  padding: 18px 22px;
+  box-shadow: 0 2px 8px rgba(147, 112, 219, 0.15);
+  position: relative;
+}
+
+.role-grid .task-section::before {
+  content: 'ROLE CARD';
+  position: absolute;
+  top: -11px;
+  left: 18px;
+  background: #9370db;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  padding: 2px 10px;
+  border-radius: 999px;
+}
+
+.role-grid .task-section h2 {
+  margin-top: 4px;
+  padding-bottom: 8px;
+  border-bottom: 2px dashed #d9c7f5;
+}
+
+@media (max-width: 860px) {
+  .role-grid { grid-template-columns: 1fr; }
+}
+
 .task-section ul {
   padding-left: 20px;
   margin: 8px 0;
@@ -443,6 +484,31 @@ table.dialogue tr.active-row td {
   border-bottom-style: solid;
 }
 
+.word.trace-now {
+  background: #ffe066;
+  border-bottom-color: #f59e0b;
+  border-radius: 3px;
+  box-shadow: 0 0 0 2px #ffe066, 0 3px 0 -1px #f59e0b;
+}
+
+.word.trace-done {
+  background: rgba(45, 212, 191, 0.22);
+  border-bottom-color: rgba(15, 118, 110, 0.55);
+}
+
+.trace-hint {
+  display: inline-block;
+  margin-left: auto;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(15, 118, 110, 0.1);
+  border: 1px dashed rgba(15, 118, 110, 0.5);
+  color: #0f766e;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
 .section-label td {
   background: #faf1d8 !important;
   padding: 8px 14px !important;
@@ -547,6 +613,8 @@ table.dialogue tr.active-row td {
 
   <div class="tab-content active" id="tab-0">
 
+    <div class="role-grid">
+
     <div class="task-section">
       <h2 data-cn="学生A — Rachel Wong（数字营销主任）">Student A — Rachel Wong (Digital Marketing Officer)</h2>
       <p data-cn="你是InnoNation Tech的数字营销主任。你正在参加公司活动。与同事Marcus Leung（学生B，IT支援专员）进行对话。你需要完成以下所有事项：">You are Rachel Wong, a digital marketing officer at InnoNation Tech. You are at a company event. Hold a conversation with your colleague, Marcus Leung (Student B, an IT support specialist). You should perform all items below:</p>
@@ -579,8 +647,6 @@ table.dialogue tr.active-row td {
         <li data-cn="礼貌地结束对话">End the conversation politely</li>
       </ol>
     </div>
-
-    <hr style="border:none;border-top:2px solid #eee0b8;margin:30px 0;">
 
     <div class="task-section">
       <h2 data-cn="学生B — Marcus Leung（IT支援专员）">Student B — Marcus Leung (IT Support Specialist)</h2>
@@ -615,6 +681,8 @@ table.dialogue tr.active-row td {
       </ol>
     </div>
 
+    </div>
+
   </div>
 
       <div class="tab-content" id="tab-1">
@@ -633,6 +701,8 @@ table.dialogue tr.active-row td {
       <span class="chip a">Agreement</span>
       <span class="chip s">Small talk &amp; follow-up questions</span>
       <span class="chip o">Opinions &amp; reasons</span>
+      <span class="trace-hint" data-cn="播放时，正在朗读的单词会逐字高亮（发音追踪）">▶ Pronunciation tracer — words light up as they are spoken</span>
+      <span class="trace-hint" data-cn="鼠标停留在任何单词上即可听发音">🔊 Hover a word to hear it</span>
     </div>
 
     <div class="controls-bar">
@@ -768,6 +838,8 @@ table.dialogue tr.active-row td {
   let playlistIdx = 0;
   let isPlayingAll = false;
   let currentWordEl = null;
+  let hoverWordTimer = null;
+  let speakSeq = 0;
 
   function switchTab(index) {
     stopAll();
@@ -813,6 +885,75 @@ table.dialogue tr.active-row td {
     document.querySelectorAll('#dialogueBody tr').forEach(r => r.classList.remove('active-row'));
   }
 
+  const trace = { words: [], starts: [], raf: null, audio: null, lastIdx: -1 };
+
+  function stopTrace() {
+    if (trace.raf) cancelAnimationFrame(trace.raf);
+    trace.raf = null;
+    trace.words.forEach(w => w.classList.remove('trace-now', 'trace-done'));
+    trace.words = [];
+    trace.starts = [];
+    trace.audio = null;
+    trace.lastIdx = -1;
+  }
+
+  function startTrace(btn, audio) {
+    stopTrace();
+    const box = btn && btn.closest('.utterance');
+    if (!box) return;
+    let words = Array.from(box.querySelectorAll('span.word'));
+    if (!words.length) {
+      initWordClick();
+      words = Array.from(box.querySelectorAll('span.word'));
+    }
+    if (!words.length) return;
+
+    const weights = words.map(w => Math.max(1, w.textContent.trim().length) + 1.5);
+    const total = weights.reduce((a, b) => a + b, 0);
+    let acc = 0;
+    const starts = weights.map(w => {
+      const s = acc / total;
+      acc += w;
+      return s;
+    });
+
+    trace.words = words;
+    trace.starts = starts;
+    trace.audio = audio;
+    trace.lastIdx = -1;
+
+    const step = () => {
+      const a = trace.audio;
+      if (!a) { trace.raf = null; return; }
+      const dur = a.duration;
+      if (!a.paused && isFinite(dur) && dur > 0) {
+        const lead = Math.min(0.25, dur * 0.05);
+        const tail = Math.min(0.15, dur * 0.03);
+        const p = Math.max(0, Math.min(1, (a.currentTime - lead) / Math.max(0.1, dur - lead - tail)));
+        let idx = 0;
+        for (let i = 0; i < trace.starts.length; i++) {
+          if (p >= trace.starts[i]) idx = i;
+        }
+        if (p >= 1) idx = trace.words.length - 1;
+        if (idx !== trace.lastIdx) {
+          const prev = trace.lastIdx >= 0 ? trace.words[trace.lastIdx] : null;
+          if (prev) {
+            prev.classList.remove('trace-now');
+            prev.classList.add('trace-done');
+          }
+          const cur = trace.words[idx];
+          if (cur) {
+            cur.classList.remove('trace-done');
+            cur.classList.add('trace-now');
+          }
+          trace.lastIdx = idx;
+        }
+      }
+      trace.raf = requestAnimationFrame(step);
+    };
+    trace.raf = requestAnimationFrame(step);
+  }
+
   function playAudio(src, btn) {
     if (isPlayingAll) stopAll();
 
@@ -820,6 +961,7 @@ table.dialogue tr.active-row td {
       currentAudio.pause();
       if (currentBtn && currentBtn !== btn) resetBtn(currentBtn);
       if (currentBtn === btn) {
+        stopTrace();
         currentAudio = null;
         currentBtn = null;
         return;
@@ -832,8 +974,10 @@ table.dialogue tr.active-row td {
     setBtnPause(btn);
     highlightRow(btn);
     currentAudio.play();
+    startTrace(btn, currentAudio);
 
     currentAudio.addEventListener('ended', function() {
+      stopTrace();
       resetBtn(btn);
       currentAudio = null;
       currentBtn = null;
@@ -881,8 +1025,10 @@ table.dialogue tr.active-row td {
     currentBtn = btn;
     setBtnPause(btn);
     currentAudio.play();
+    startTrace(btn, currentAudio);
 
     currentAudio.addEventListener('ended', function() {
+      stopTrace();
       resetBtn(btn);
       playlistIdx++;
       if (isPlayingAll && playlistIdx < playlist.length) playNext();
@@ -899,6 +1045,7 @@ table.dialogue tr.active-row td {
 
   function stopAll() {
     isPlayingAll = false;
+    stopTrace();
     if (currentAudio) {
       currentAudio.pause();
       currentAudio = null;
@@ -930,6 +1077,8 @@ table.dialogue tr.active-row td {
   }
 
   function wrapWordsInEl(el) {
+    if (el.dataset.wordsDone) return;
+    el.dataset.wordsDone = '1';
     const walk = (node) => {
       Array.from(node.childNodes).forEach(child => {
         if (child.nodeType === Node.TEXT_NODE) {
@@ -942,9 +1091,18 @@ table.dialogue tr.active-row td {
               const wordSpan = document.createElement('span');
               wordSpan.className = 'word';
               wordSpan.textContent = w;
+              const spoken = w.replace(/[^a-zA-Z'-]/g, '');
               wordSpan.addEventListener('click', function(e) {
                 e.stopPropagation();
-                speakWord(w.replace(/[^a-zA-Z'-]/g, ''), this);
+                speakWord(spoken, this, false);
+              });
+              wordSpan.addEventListener('mouseenter', function() {
+                if (!spoken) return;
+                clearTimeout(hoverWordTimer);
+                hoverWordTimer = setTimeout(() => speakWord(spoken, wordSpan, true), 200);
+              });
+              wordSpan.addEventListener('mouseleave', function() {
+                clearTimeout(hoverWordTimer);
               });
               frag.appendChild(wordSpan);
             }
@@ -962,31 +1120,53 @@ table.dialogue tr.active-row td {
     document.querySelectorAll('#dialogueBody .utterance > span').forEach(wrapWordsInEl);
   }
 
-  function speakWord(word, el) {
-    if (!word) return;
-    if (synth.speaking) {
-      synth.cancel();
-      if (currentWordEl) currentWordEl.classList.remove('speaking');
-      if (currentWordEl === el) { currentWordEl = null; return; }
-    }
+  function speakWord(word, el, isHover) {
+    if (!word || !el) return;
+    if (!synth || typeof window.SpeechSynthesisUtterance === 'undefined') return;
+
+    const wasSame = currentWordEl === el;
+    const active = !!(synth.speaking || synth.pending);
+    if (active) synth.cancel();
     if (currentWordEl) currentWordEl.classList.remove('speaking');
+    currentWordEl = null;
+
+    if (!isHover && wasSame && active) return;
+
+    const seq = ++speakSeq;
     el.classList.add('speaking');
     currentWordEl = el;
-    const utter = new SpeechSynthesisUtterance(word);
-    utter.rate = 0.85;
-    utter.pitch = 1;
-    const voices = synth.getVoices();
-    const v = voices.find(x => x.lang && x.lang.startsWith('en-GB'));
-    if (v) utter.voice = v;
-    utter.onend = function() { el.classList.remove('speaking'); currentWordEl = null; };
-    utter.onerror = function() { el.classList.remove('speaking'); currentWordEl = null; };
-    synth.speak(utter);
+
+    const go = function() {
+      if (seq !== speakSeq) {
+        el.classList.remove('speaking');
+        if (currentWordEl === el) currentWordEl = null;
+        return;
+      }
+      const utter = new SpeechSynthesisUtterance(word);
+      utter.rate = 0.85;
+      utter.pitch = 1;
+      const voices = synth.getVoices();
+      const v = voices.find(x => x.lang && x.lang.startsWith('en-GB'));
+      if (v) utter.voice = v;
+      const finish = function() {
+        if (seq !== speakSeq) return;
+        el.classList.remove('speaking');
+        if (currentWordEl === el) currentWordEl = null;
+      };
+      utter.onend = finish;
+      utter.onerror = finish;
+      synth.speak(utter);
+    };
+
+    if (active) setTimeout(go, 70); else go();
   }
 
   document.addEventListener('DOMContentLoaded', function() {
     initTranslations();
-    if (synth.getVoices().length) initWordClick();
-    else synth.addEventListener('voiceschanged', initWordClick, { once: true });
+    initWordClick();
+    if (!synth || !synth.getVoices().length) {
+      try { synth.addEventListener('voiceschanged', initWordClick, { once: true }); } catch (e) {}
+    }
   });
 </script>
 
