@@ -692,7 +692,8 @@ img, video { max-width: 100%; }
   }
   table.dialogue td:nth-child(1):not([colspan])::before { content: "Student A \2014  Rachel Wong"; }
   table.dialogue td:nth-child(2):not([colspan])::before { content: "Student B \2014  Marcus Leung"; color: #1e6fb8; }
-  table.dialogue td:nth-child(2):not([colspan]) { background: #f6faff !important; }
+  table.dialogue td:nth-child(2):not([colspan]) { background: #f6faff; }
+  table.dialogue td.c-fn { background: #faf7ff; }
 
   .c-fn { font-size: 12.5px; }
   .c-fn .lang-tags { gap: 6px; }
@@ -732,6 +733,27 @@ img, video { max-width: 100%; }
 @media print {
   body::before, body::after, .banner, .controls-bar, .tabs, .btn-icon, .cn-toggle-wrap { display: none !important; }
   .tab-content { display: block !important; box-shadow: none; page-break-inside: avoid; }
+}
+
+/* Chinese translation is injected inside .utterance: give it its own full-width line */
+.utterance > span, .utterance > .ut-text { flex: 1 1 0; min-width: 0; }
+.utterance .cn-translation { flex: 1 1 100%; }
+@media (max-width: 760px) {
+  .utterance { flex-wrap: wrap; }
+  .utterance > span, .utterance > .ut-text { flex: 1 1 calc(100% - 50px); }
+  .utterance .cn-translation { margin-left: 46px; flex-basis: calc(100% - 46px); }
+
+  /* Task-overview tab (Practice 2 layout) */
+  .task-list-box { padding: 14px 14px; }
+  .task-list-box ol { padding-left: 20px; }
+  .task-sub { margin-left: 4px; }
+  .task-sub-list { padding-left: 28px; }
+  .task-list-ul { padding-left: 22px; }
+
+  /* Modal-verb reference box */
+  .modal-ref { padding: 12px 12px; }
+  .modal-ref .mrow { flex-wrap: wrap; gap: 2px 8px; }
+  .modal-ref .mrow .cat { min-width: 0; flex: 0 0 100%; }
 }
 </style>
 </head>
@@ -1406,6 +1428,15 @@ img, video { max-width: 100%; }
       const b = document.querySelectorAll('.tab-btn')[i];
       if (b && b.scrollIntoView) b.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
     };
+  })();
+
+  /* Touch screens: "hover" hint -> "tap" */
+  (function () {
+    if (window.matchMedia && window.matchMedia('(hover: none)').matches) {
+      document.querySelectorAll('.trace-hint').forEach(function (el) {
+        el.innerHTML = el.innerHTML.replace('Hover a word to hear it', 'Tap a word to hear it');
+      });
+    }
   })();
 </script>
 
