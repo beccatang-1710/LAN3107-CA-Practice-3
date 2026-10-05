@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#9370db">
 <title>LAN3107 Unit 6 CA Practice 3</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -584,6 +585,154 @@ table.dialogue tr.active-row td {
 .cn-toggle input:checked::before {
   transform: translateX(18px);
 }
+
+/* ====================================================================
+   RESPONSIVE LAYER  (phone / tablet / laptop / large desktop)
+   ==================================================================== */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { -webkit-tap-highlight-color: transparent; padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); padding-bottom: env(safe-area-inset-bottom); }
+img, video { max-width: 100%; }
+.page-header { width: 100%; }
+.page-header h1 { font-size: clamp(18px, 2.2vw + 10px, 28px); line-height: 1.3; }
+.page-header p { font-size: clamp(14px, 1vw + 11px, 17px); }
+.container { width: 100%; }
+.tab-content { overflow-wrap: anywhere; }
+.tab-content video { height: auto; }
+
+/* Pause the decorative animations for people who ask the OS to reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  body::after, .banner img { animation: none !important; }
+}
+
+/* Tooltip bubble used on touch screens (tap a highlight to see its explanation) */
+.tip-bubble {
+  position: fixed; z-index: 1000; max-width: min(300px, 86vw);
+  background: #2d1b4e; color: #fff; font-size: 13px; line-height: 1.45;
+  padding: 8px 12px; border-radius: 8px; box-shadow: 0 4px 14px rgba(0,0,0,.3);
+  pointer-events: none; opacity: 0; transition: opacity .15s;
+}
+.tip-bubble.show { opacity: 1; }
+
+/* ---------- Large desktop ---------- */
+@media (min-width: 1400px) {
+  .page-header, .container { max-width: 1280px; }
+  .tab-content { padding: 36px 40px; }
+}
+
+/* ---------- Tablet & small laptop (601–1024px) ---------- */
+@media (max-width: 1024px) {
+  .container { padding: 16px; }
+  .tab-content { padding: 22px; }
+  .tab-btn { padding: 12px 22px; }
+  table.dialogue th, table.dialogue td { padding: 8px 10px; }
+  table.dialogue th:nth-child(1), table.dialogue th:nth-child(2) { width: 32%; }
+  table.dialogue th:nth-child(3) { width: 36%; }
+  .controls-bar input[type="range"] { max-width: 140px; }
+}
+
+/* ---------- Phones & narrow windows (<= 760px) ---------- */
+@media (max-width: 760px) {
+  .page-header { padding: 14px 14px 0; }
+  .page-header img { max-width: 140px !important; }
+  .container { padding: 10px; }
+
+  /* Tabs: full-width, scroll sideways if needed, bigger tap targets */
+  .tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; gap: 4px; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab-btn { flex: 1 0 auto; padding: 12px 14px; font-size: 14px; min-height: 44px; white-space: nowrap; border-radius: 10px 10px 0 0; }
+  .tab-content { padding: 16px 14px; border-radius: 0 0 10px 10px; }
+
+  .cn-toggle-wrap { text-align: center; margin: 8px 0 4px; }
+  .cn-toggle { font-size: 15px; min-height: 44px; }
+
+  .role-grid .task-section { padding: 16px 14px; }
+  .task-box { padding: 12px 14px; }
+
+  /* Legend chips: smaller and wrapping */
+  .legend { gap: 6px; }
+  .legend .chip { font-size: 11px; }
+  .trace-hint { margin-left: 0; white-space: normal; font-size: 11.5px; }
+
+  /* Controls: slider on its own row, buttons share a row */
+  .controls-bar { gap: 8px; padding: 10px 12px; }
+  .controls-bar .separator { display: none; }
+  .controls-bar input[type="range"] { flex: 1 1 120px; max-width: none; min-width: 100px; height: 28px; }
+  .ctrl-btn { flex: 1 1 0; justify-content: center; min-height: 44px; padding: 8px 10px; }
+
+  /* ---- Dialogue table -> stacked cards ---- */
+  table.dialogue, table.dialogue tbody, table.dialogue tr, table.dialogue td { display: block; width: 100%; }
+  table.dialogue thead { display: none; }
+  table.dialogue td:empty { display: none; }
+
+  table.dialogue tr {
+    margin-bottom: 14px; border: 1px solid #eee0b8; border-radius: 10px;
+    overflow: hidden; background: #fff;
+  }
+  table.dialogue tr.section-label {
+    border: none; background: transparent; margin: 18px 0 8px; overflow: visible;
+  }
+  table.dialogue tr.section-label td {
+    border-radius: 8px; border: none; border-left: 4px solid #9370db; line-height: 1.4;
+  }
+  table.dialogue td,
+  table.dialogue td:first-child,
+  table.dialogue td:nth-child(2),
+  table.dialogue td:last-child {
+    border-right: none; border-bottom: 1px solid #f3e9c9; padding: 12px 14px 12px;
+  }
+  table.dialogue tr td:last-child { border-bottom: none; }
+  table.dialogue tr:nth-child(even) td { background: transparent; }
+  table.dialogue tr.active-row td { background: #f7eccf !important; }
+
+  /* Speaker labels (tables had these only in the header row) */
+  table.dialogue td:nth-child(1):not([colspan])::before,
+  table.dialogue td:nth-child(2):not([colspan])::before {
+    display: block; font-size: 11px; font-weight: 700; letter-spacing: .8px;
+    text-transform: uppercase; color: #7b5ec0; margin-bottom: 6px;
+  }
+  table.dialogue td:nth-child(1):not([colspan])::before { content: "Student A \2014  Rachel Wong"; }
+  table.dialogue td:nth-child(2):not([colspan])::before { content: "Student B \2014  Marcus Leung"; color: #1e6fb8; }
+  table.dialogue td:nth-child(2):not([colspan]) { background: #f6faff !important; }
+
+  .c-fn { font-size: 12.5px; }
+  .c-fn .lang-tags { gap: 6px; }
+  .exp-item { font-size: 11.5px; }
+
+  /* Bigger play buttons for fingers (still looks small via inner icon) */
+  .btn-icon { width: 36px; height: 36px; margin-top: 0; }
+  .btn-icon svg { width: 15px; height: 15px; }
+  .utterance { gap: 10px; align-items: flex-start; font-size: 16px; line-height: 1.65; }
+  .lang-hl { padding: 1px 4px; }
+
+  .cn-translation { font-size: 14px; }
+  .tab-content video { border-radius: 6px; }
+}
+
+/* ---------- Very small phones (<= 380px) ---------- */
+@media (max-width: 380px) {
+  .tab-btn { padding: 10px 10px; font-size: 13px; }
+  .tab-content { padding: 14px 10px; }
+  h2 { font-size: 17px; }
+  .ctrl-btn { font-size: 12px; padding: 8px 6px; gap: 3px; }
+}
+
+/* ---------- Touch devices: no hover, comfortable hit areas ---------- */
+@media (hover: none) {
+  .lang-hl { cursor: pointer; }
+  .word { padding: 1px 2px; }
+}
+
+/* ---------- Landscape phones: keep the banner from eating the screen ---------- */
+@media (max-height: 480px) and (orientation: landscape) {
+  .banner { max-height: 38vh; }
+  .banner img { height: 38vh; object-fit: cover; }
+}
+
+/* ---------- Print ---------- */
+@media print {
+  body::before, body::after, .banner, .controls-bar, .tabs, .btn-icon, .cn-toggle-wrap { display: none !important; }
+  .tab-content { display: block !important; box-shadow: none; page-break-inside: avoid; }
+}
 </style>
 </head>
 <body>
@@ -825,7 +974,7 @@ table.dialogue tr.active-row td {
   <div class="tab-content" id="tab-2">
     <h1>Sample Conversation Video</h1>
     <p style="color:#666; margin-bottom:16px;">Watch the suggested conversation between Rachel and Marcus.</p>
-    <video controls width="100%" style="max-width:1000px; display:block; border-radius:8px; box-shadow:0 2px 12px rgba(0,0,0,0.15);">
+    <video controls playsinline preload="metadata" width="100%" style="max-width:1000px; display:block; border-radius:8px; box-shadow:0 2px 12px rgba(0,0,0,0.15);">
       <source src="LAN3107_CA Practice 3 video_addheadings.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
@@ -1215,6 +1364,49 @@ table.dialogue tr.active-row td {
       try { synth.addEventListener('voiceschanged', initWordClick, { once: true }); } catch (e) {}
     }
   });
+
+  /* ---- Tap-to-show grammar explanations on touch screens ---- */
+  (function () {
+    const tip = document.createElement('div');
+    tip.className = 'tip-bubble';
+    document.body.appendChild(tip);
+    let hideTimer = null, activeEl = null;
+
+    function hide() { tip.classList.remove('show'); activeEl = null; }
+
+    document.addEventListener('click', function (e) {
+      if (window.matchMedia('(hover: hover)').matches) return;   // desktop keeps native tooltips
+      const mark = e.target.closest && e.target.closest('mark.lang-hl');
+      if (!mark) { hide(); return; }
+      const text = mark.getAttribute('title') || mark.dataset.tip;
+      if (!text) return;
+      if (mark.getAttribute('title')) { mark.dataset.tip = text; mark.removeAttribute('title'); }
+      if (activeEl === mark) { hide(); return; }
+      activeEl = mark;
+      tip.textContent = mark.dataset.tip;
+      const r = mark.getBoundingClientRect();
+      tip.style.left = '0px'; tip.style.top = '0px';
+      tip.classList.add('show');
+      const tw = tip.offsetWidth, th = tip.offsetHeight;
+      let left = Math.max(8, Math.min(window.innerWidth - tw - 8, r.left + r.width / 2 - tw / 2));
+      let top = r.top - th - 8;
+      if (top < 8) top = r.bottom + 8;
+      tip.style.left = left + 'px'; tip.style.top = top + 'px';
+      clearTimeout(hideTimer);
+      hideTimer = setTimeout(hide, 4500);
+    }, true);
+    window.addEventListener('scroll', hide, { passive: true });
+  })();
+
+  /* Keep the active tab button in view on narrow screens */
+  (function () {
+    const orig = window.switchTab;
+    window.switchTab = function (i) {
+      orig(i);
+      const b = document.querySelectorAll('.tab-btn')[i];
+      if (b && b.scrollIntoView) b.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+    };
+  })();
 </script>
 
 </body>
